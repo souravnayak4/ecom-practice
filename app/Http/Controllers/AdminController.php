@@ -12,7 +12,7 @@ use Redirect;
 
 class AdminController extends Controller
 {
-    // This is dashboard page
+    // This is dashboard page ss
     public function dashboard()
     {   
         return view('admin.pages.dashboard');
