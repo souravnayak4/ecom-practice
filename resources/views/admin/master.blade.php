@@ -59,10 +59,10 @@
 						</div>
 						<div class="menu-title">SubCategory</div>
 					</a>
-					 <a class="" href="/products">
+					 <a class="" href="products">
 						<div class="parent-icon"><i class="bx bx-repeat"></i>
 						</div>
-						<div class="menu-title">add_products</div>
+						<div class="menu-title">add_products and view</div>
 					</a>
 					<a href="" class="">
 						<div class="parent-icon"><i class='bx bx-cart'></i>

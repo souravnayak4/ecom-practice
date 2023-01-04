@@ -63,10 +63,10 @@ Route::get('/add-subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/save-subcategory', [AdminController::class, 'save_subcategory']);
 /* Route::get('/subcategory/addsubcategory', [AdminController::class, 'addsubcategory']);
 Route::post('/subcategory/addsubcategory', [AdminController::class, 'save_subcategory']); */
-Route::get('/products', [AdminController::class, 'all_products']);
+/* Route::get('/products', [AdminController::class, 'all_products']);
 Route::get('/add-products', [AdminController::class, 'add_products']);
 Route::post('/add-products', [AdminController::class, 'add_products']);
-Route::post('/add-products', [AdminController::class, 'save_products']);
+Route::post('/add-products', [AdminController::class, 'save_products']); */
 
 Route::get('/products-details', [AdminController::class, 'all_products_details']);
 
