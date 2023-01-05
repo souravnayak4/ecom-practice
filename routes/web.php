@@ -7,6 +7,7 @@ use App\Http\Controllers\SubadminController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\ProductController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
-    Route::get('/manager/dashboard', [HomeController::class, 'managerDashboard'])->name('manager.dashboard');
+   /*  Route::get('/manager/dashboard', [HomeController::class, 'managerDashboard'])->name('manager.dashboard'); */
+   Route::get('/super-admin/dashboard', [HomeController::class, 'superAdminDashboard'])->name('super.admin.dashboard');
 });  
 
 // Super Admin Routes
@@ -74,8 +76,9 @@ Route::get('/products-details', [AdminController::class, 'all_products_details']
 
 
 
-Route::get('/tracking', [AdminController::class, 'tracking']);
+/* Route::get('/tracking', [AdminController::class, 'tracking']);
 Route::get('/subadmin', [AdminController::class, 'subadmin']);
+Route::get('/add-subadmin', [AdminController::class, 'add_subadmin']); */
 
 
 
@@ -84,9 +87,9 @@ Route::get('/adminlogin', [AdminController::class, 'adminlogin'])->name('admin.l
 
 
 // subadmin dashboard
-Route::get('/subdashboard', [SubadminController::class, 'dashboard']);
+/* Route::get('/subdashboard', [SubadminController::class, 'dashboard']);
 Route::get('/subadminlogin', [SubadminController::class, 'subadminlogin']);
-Auth::routes();
+Auth::routes(); */
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -102,3 +105,9 @@ Route::post('insertData',[AdminController::class,'insert']);
 
 
 Route::resource('products', ProductController::class);
+
+
+
+Route::resource('subadmins', SubadminController::class);
+
+
