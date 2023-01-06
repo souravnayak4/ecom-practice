@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Subadmin extends Model
 {
     use HasFactory;
 
     protected $fillable = [
 
-        'name', 'contact', 'email'
+        'name', 'contact', 'email','password'
 
     ];
+
+    
 }

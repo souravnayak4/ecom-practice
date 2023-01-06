@@ -65,7 +65,7 @@
 						<div class="menu-title">add_products and view</div>
 					</a>
 
-					<a href="add_subadmin" class="">
+					<a href="subadmins" class="">
 						<div class="parent-icon"><i class='bx bx-cart'></i>
 						</div>
 						<div class="menu-title">add subadmin</div>

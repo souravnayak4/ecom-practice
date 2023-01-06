@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subadmin;
 use Illuminate\Http\Request;
 
+
 class SubadminController extends Controller
 {
     /**
@@ -46,6 +47,7 @@ class SubadminController extends Controller
             'contact' => 'required',
     
             'email' => 'email',
+            'password' => 'required',
     
         ]);
         $input = $request->all();
@@ -53,7 +55,7 @@ class SubadminController extends Controller
 
         return redirect()->route('subadmins.index')
 
-                    ->with('success','Product created successfully.');
+                    ->with('success','subadmin created successfully.');
     }
 
    
@@ -81,7 +83,7 @@ class SubadminController extends Controller
      */
     public function edit(Subadmin $subadmin)
     {
-        //
+        return view('subadmins.edit',compact('subadmin'));
     }
 
     /**
@@ -93,7 +95,34 @@ class SubadminController extends Controller
      */
     public function update(Request $request, Subadmin $subadmin)
     {
-        //
+        $request->validate([
+
+            'name' => 'required',
+
+            'contact' => 'required',
+    
+            'email' => 'email',
+            'password' => 'required',
+
+        ]);
+
+  
+
+        $input = $request->all();
+
+  
+
+       
+          
+
+        $subadmin->update($input);
+
+    
+
+        return redirect()->route('subadmins.index')
+
+                        ->with('success','subadmin updated successfully');
+
     }
 
     /**
@@ -104,6 +133,12 @@ class SubadminController extends Controller
      */
     public function destroy(Subadmin $subadmin)
     {
-        //
+        $subadmin->delete();
+
+     
+
+        return redirect()->route('subadmin.index')
+
+                        ->with('success','subadmin deleted successfully');
     }
 }
