@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Subadmin;
 use Illuminate\Http\Request;
-
-
+use App\Mail\MailSubadminMailable;
+use Illuminate\support\Facades\Mail;
+use App\Mail\SubadmindetailsMailable;
 class SubadminController extends Controller
 {
     /**
@@ -32,6 +33,19 @@ class SubadminController extends Controller
         return view('subadmins.create');
     }
 
+    
+    private function SubadmindetailsMailable($request)
+    {
+        $subadmin = [
+            'name'=>$request->input('name'),
+            'contact' => $request->input('contact'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+           $to_subadmin_email = $request-> input('email');
+        Mail::to($to_subadmin_email)->send(new SubadmindetailsMailable($subadmin));
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -52,17 +66,15 @@ class SubadminController extends Controller
         ]);
         $input = $request->all();
         Subadmin::create($input);
+        
+
+       $this->SubadmindetailsMailable($request);
 
         return redirect()->route('subadmins.index')
 
-                    ->with('success','subadmin created successfully.');
+         ->with('success','subadmin created successfully.');
     }
 
-   
-
-
-
-   
 
     /**
      * Display the specified resource.
@@ -72,7 +84,7 @@ class SubadminController extends Controller
      */
     public function show(Subadmin $subadmin)
     {
-        //
+        return view('subadmins.show',compact('subadmin'));
     }
 
     /**
@@ -137,8 +149,17 @@ class SubadminController extends Controller
 
      
 
-        return redirect()->route('subadmin.index')
+        return redirect()->route('subadmins.index')
 
                         ->with('success','subadmin deleted successfully');
+    }
+
+    public function mailsubadmin(Subadmin $subadmin)
+    {
+        return view('subadmins.show',compact('subadmin'));  
+        Mail::to("$subadmin->email")->send(new MailSubadminMailable($subadmin));
+        return redirect()->route('subadmins.index')
+
+                        ->with('success','subadmin details  successfully');
     }
 }

@@ -82,15 +82,15 @@
 
         <td>
 
-            <form action="{{ route('products.destroy',$subadmin->id) }}" method="POST">
+            <form action="{{ route('subadmins.destroy',$subadmin->id) }}" method="POST">
 
  
 
                 <a class="btn btn-info" href="{{ route('subadmins.show',$subadmin->id) }}">View</a>
-
+                
   
 
-                <a class="btn btn-primary" href="{{ route('subadmins.edit',$subadmin->id) }}">Update </a>
+                <a class="btn btn-primary" href="{{ route('subadmins.show',$subadmin->id.'/mail') }}">send info </a>
 
  
 
