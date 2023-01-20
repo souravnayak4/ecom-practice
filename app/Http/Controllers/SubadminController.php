@@ -74,9 +74,47 @@ class SubadminController extends Controller
 
          ->with('success','subadmin created successfully.');
     }
+  /*  */
+ /*   public function login(Request $request)
+   {
+    
+    $subadmin= Subadmin::where('email',$request->input('email'))->get();
+     return $subadmin->password;
+     return view('subadmins.login');
+   } 
+    
+   public function addlogin(Request $request)
+   {
+     $subadmin= Subadmin::where('email',$request->input('email'))->get();
+     return $subadmin->password;
+   } */
+
+  
+   public function  subadminindex()
+    {
+        return view('subadmins.login');
+    } 
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+    
+        $credentials = $request->only('email', 'password');
+        if (Subadmin::attempt($credentials)) {
+            return redirect()->intended('subadmins.index')
+                        ->with('message', 'Signed in!');
+        }
+   
+        return redirect('/login')->with('message', 'Login details are not valid!');
+    }
+ 
 
 
-    /**
+
+   
+   /**
      * Display the specified resource.
      *
      * @param  \App\Models\Subadmin  $subadmin

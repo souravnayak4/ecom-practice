@@ -76,9 +76,7 @@ Route::get('/products-details', [AdminController::class, 'all_products_details']
 
 
 
-/* Route::get('/tracking', [AdminController::class, 'tracking']);
-Route::get('/subadmin', [AdminController::class, 'subadmin']);
-Route::get('/add-subadmin', [AdminController::class, 'add_subadmin']); */
+
 
 
 
@@ -109,5 +107,7 @@ Route::resource('products', ProductController::class);
 
 
 Route::resource('subadmins', SubadminController::class);
+Route::get('login', [SubadminController::class, 'subadminindex'])->name('login');
+Route::post('postlogin', [SubadminController::class, 'login'])->name('postlogin');
 
 

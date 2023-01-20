@@ -90,7 +90,7 @@
                 
   
 
-                <a class="btn btn-primary" href="{{ route('subadmins.show',$subadmin->id.'/mail') }}">send info </a>
+               
 
  
 

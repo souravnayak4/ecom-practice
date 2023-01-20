@@ -156,7 +156,7 @@ class AdminController extends Controller
     {   
         return view('admin.login');
     }
-
+    
     public function addcategory()
     {   
         return view('admin.pages.add_category');
