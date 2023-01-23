@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubadminController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminproductController;
 
 
 /*
@@ -52,8 +53,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 //Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::get('/orders', [AdminController::class, 'orders']);
 Route::get('/category', [AdminController::class, 'category']);
-/* Route::get('add', [AdminController::class, 'addcategory']);
-Route::post('add', [AdminController::class, 'addData']); */
+
 Route::get('/add-category', [AdminController::class, 'add_category']);
 Route::post('/save-category', [AdminController::class, 'save_category']);
 Route::get('/delete-category/{id}', [AdminController::class, 'delete_category']);
@@ -63,12 +63,7 @@ Route::get('/delete-category/{id}', [AdminController::class, 'delete_category'])
 Route::get('/subcategory', [AdminController::class, 'subcategory']);
 Route::get('/add-subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/save-subcategory', [AdminController::class, 'save_subcategory']);
-/* Route::get('/subcategory/addsubcategory', [AdminController::class, 'addsubcategory']);
-Route::post('/subcategory/addsubcategory', [AdminController::class, 'save_subcategory']); */
-/* Route::get('/products', [AdminController::class, 'all_products']);
-Route::get('/add-products', [AdminController::class, 'add_products']);
-Route::post('/add-products', [AdminController::class, 'add_products']);
-Route::post('/add-products', [AdminController::class, 'save_products']); */
+
 
 Route::get('/products-details', [AdminController::class, 'all_products_details']);
 
@@ -84,10 +79,7 @@ Route::get('/adminlogin', [AdminController::class, 'adminlogin'])->name('admin.l
 
 
 
-// subadmin dashboard
-/* Route::get('/subdashboard', [SubadminController::class, 'dashboard']);
-Route::get('/subadminlogin', [SubadminController::class, 'subadminlogin']);
-Auth::routes(); */
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -100,14 +92,19 @@ Route::post('/image-upload', [FileUpload::class, 'fileUpload'])->name('imageUplo
 Route::post('insertData',[AdminController::class,'insert']);
 
 
-
+//products
 
 Route::resource('products', ProductController::class);
-
-
+Route::get('excel-products', [ProductController::class, 'exportproducts']);
+Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
+Route::post('import-products', [ProductController::class, 'productsexcel'])->name('import-products');
 
 Route::resource('subadmins', SubadminController::class);
 Route::get('login', [SubadminController::class, 'subadminindex'])->name('login');
 Route::post('postlogin', [SubadminController::class, 'login'])->name('postlogin');
 
 
+
+
+Route::get('/add-admin-product', [AdminproductController::class, 'insert'])->name('product.insert');
+Route::post('/add-admin-product', [AdminproductController::class, 'store']);

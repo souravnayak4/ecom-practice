@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Mail\MailSubadminMailable;
 use Illuminate\support\Facades\Mail;
 use App\Mail\SubadmindetailsMailable;
+use Illuminate\Support\Facades\Auth;
+
 class SubadminController extends Controller
 {
     /**
@@ -32,7 +34,7 @@ class SubadminController extends Controller
     {
         return view('subadmins.create');
     }
-
+   
     
     private function SubadmindetailsMailable($request)
     {
@@ -102,12 +104,12 @@ class SubadminController extends Controller
         ]);
     
         $credentials = $request->only('email', 'password');
-        if (Subadmin::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             return redirect()->intended('subadmins.index')
                         ->with('message', 'Signed in!');
         }
    
-        return redirect('/login')->with('message', 'Login details are not valid!');
+        return redirect('/subadmins')->with('message', 'Login details are not valid!');
     }
  
 

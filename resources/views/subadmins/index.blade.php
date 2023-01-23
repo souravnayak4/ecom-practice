@@ -32,6 +32,7 @@
             <a class="btn btn-success" href="{{ route('subadmins.create') }}"> ADD SUBADMIN</a>
 
         </div><br>
+        
 
     </div>
 

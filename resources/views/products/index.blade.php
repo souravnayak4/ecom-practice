@@ -30,13 +30,23 @@
             <div class="pull-right">
                
                 <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
-
+                
             </div>
-
+           
         </div>
-
+       
     </div>
-
+    &nbsp;
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+               
+            <a class="btn btn-success" href="excel-products"> export  Product excel </a>
+            <a class="btn btn-success" href="import-excel-products">import export  Product excel </a>
+            
+        </div>
+       </div>
+    </div>
     
 
     @if ($message = Session::get('success'))

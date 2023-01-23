@@ -1,15 +1,10 @@
 <?php
-
-  
-
 namespace App\Http\Controllers;
-
-  
-
 use App\Models\Product;
-
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
-
+use Excel;
   
 
 class ProductController extends Controller
@@ -60,8 +55,31 @@ class ProductController extends Controller
 
     }
 
-    
+    public function exportproducts()
 
+    {
+
+        return Excel::Download(new ProductsExport,'Products.xlsx' );
+
+    }
+    public function importsproducts()
+
+    {
+
+        return view('products.excel');
+
+    }
+    
+    public function productsexcel(Request $request)
+
+    {
+
+        //validate
+        Excel::import(new ProductsImport, $request->file('file'));
+        return redirect()->route('products.index')
+
+                        ->with('success','Product created successfully.');
+    }
     /**
 
      * Store a newly created resource in storage.
@@ -251,5 +269,5 @@ class ProductController extends Controller
                         ->with('success','Product deleted successfully');
 
     }
-
+   
 }
