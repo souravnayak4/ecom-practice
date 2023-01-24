@@ -67,11 +67,11 @@
 
             <th>No</th>
 
-            <th>Image</th>
-
             <th>Name</th>
 
             <th>Details</th>
+
+            <th>Image</th>
 
             <th width="280px">Action</th>
 
@@ -81,13 +81,14 @@
 
         <tr>
 
-            <td>{{ ++$i }}</td>
-
+            <td>{{$product->id}}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->detail }}</td>
             <td><img src="/image/{{ $product->image }}" width="100px"></td>
 
-            <td>{{ $product->name }}</td>
+            
 
-            <td>{{ $product->detail }}</td>
+            
 
             <td>
 

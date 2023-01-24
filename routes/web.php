@@ -7,6 +7,9 @@ use App\Http\Controllers\SubadminController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminproductController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FrontendController;
+
 
 
 /*
@@ -108,3 +111,14 @@ Route::post('postlogin', [SubadminController::class, 'login'])->name('postlogin'
 
 Route::get('/add-admin-product', [AdminproductController::class, 'insert'])->name('product.insert');
 Route::post('/add-admin-product', [AdminproductController::class, 'store']);
+
+
+//frontend start//
+Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
+Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::get('/frontend.dashboard', [AuthController::class, 'home']); 
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/index', [FrontendController::class, 'index']);
+Route::get('/shop', [FrontendController::class, 'shop']);

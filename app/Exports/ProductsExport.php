@@ -14,4 +14,5 @@ class ProductsExport implements FromCollection
     {
         return Product::all();
     }
+    
 }
