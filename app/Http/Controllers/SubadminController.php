@@ -104,8 +104,8 @@ class SubadminController extends Controller
         ]);
     
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('subadmins.index')
+        if(Auth::guard('subadmin')->attempt($credentials)){
+            return redirect()->intended('/index')
                         ->with('message', 'Signed in!');
         }
    
@@ -113,7 +113,7 @@ class SubadminController extends Controller
     }
  
 
-
+  
 
    
    /**

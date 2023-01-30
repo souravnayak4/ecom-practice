@@ -38,38 +38,8 @@
                     <div class="language__currency d-none d-lg-block">
                         <ul class="d-flex align-items-center">
                             <li class="header__shipping--text text-white"><img class="header__shipping--text__icon" src="{{asset('frontend')}}/img/icon/bus.png" alt="bus-icon"> Track Your Order</li>
-                            <li class="language__currency--list">
-                                <a class="language__switcher text-white" href="#">
-                                    <img class="language__switcher--icon__img" src="{{asset('frontend')}}/img/icon/language-icon.png" alt="currency">
-                                    <span>English</span> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
-                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                    </svg>
-                                </a>
-                                <div class="dropdown__language">
-                                    <ul>
-                                        <li class="language__items"><a class="language__text" href="#">France</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Russia</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Spanish</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="language__currency--list">
-                                <a class="account__currency--link text-white" href="#">
-                                    <img src="{{asset('frontend')}}/img/icon/usd-icon.png" alt="currency">
-                                    <span>$ US Dollar</span> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
-                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                    </svg>
-                                </a>
-                                <div class="dropdown__currency">
-                                    <ul>
-                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
-                                    </ul>
-                                </div>
+                           
+                            
                             </li>
                         </ul>
                     </div>
@@ -105,40 +75,16 @@
                                   
                                 </li>
                                 <li class="header__menu--items">
-                                    <a class="header__menu--link" href="about.html">About US </a>  
+                                    <a class="header__menu--link" href="/about">About US </a>  
                                 </li>
                                 <li class="header__menu--items">
                                     <a class="header__menu--link" href="blog.html">Blog 
-                                        <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12" height="7.41" viewBox="0 0 12 7.41">
-                                            <path  d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                        </svg>
+                                        
                                     </a>
-                                    <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="blog.html" class="header__sub--menu__link">Blog Grid</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-details.html" class="header__sub--menu__link">Blog Details</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-left-sidebar.html" class="header__sub--menu__link">Blog Left Sidebar</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-right-sidebar.html" class="header__sub--menu__link">Blog Right Sidebar</a></li>
-                                    </ul>
+                                   
                                 </li>
-                                <li class="header__menu--items d-none d-xl-block">
-                                    <a class="header__menu--link" href="shop.html">Categories </a>  
-                                </li>
-                                <li class="header__menu--items">
-                                    <a class="header__menu--link" href="#">Pages 
-                                        <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12" height="7.41" viewBox="0 0 12 7.41">
-                                            <path  d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                        </svg>
-                                    </a>
-                                    <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="about.html" class="header__sub--menu__link">About Us</a></li>
-                                        <li class="header__sub--menu__items"><a href="contact.html" class="header__sub--menu__link">Contact Us</a></li>
-                                        <li class="header__sub--menu__items"><a href="cart.html" class="header__sub--menu__link">Cart Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="portfolio.html" class="header__sub--menu__link">Portfolio Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="wishlist.html" class="header__sub--menu__link">Wishlist Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="login.html" class="header__sub--menu__link">Login Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="404.html" class="header__sub--menu__link">Error Page</a></li>
-                                    </ul>
-                                </li>
+                                
+                               
                                 <li class="header__menu--items">
                                     <a class="header__menu--link" href="contact.html">Contact </a>  
                                 </li>
@@ -153,14 +99,17 @@
                                     <span class="visually-hidden">search btn</span>  
                                 </a>
                             </li>
-                            <li class="header__account--items header__account2--items">
-                                <a class="header__account--btn" href="my-account.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
-                                    <span class="visually-hidden">Account</span>  
-                                </a>
-                            </li>
+                            <li>
+                                <a class="" href="/new-user-login">Login/</a>
+                                <a class="" href="/new-user-registration">Register</a>
+                            </li>     
+                                
+                                
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
                             <li class="header__account--items header__account2--items d-none d-lg-block">
-                                <a class="header__account--btn" href="wishlist.html">
+                                <a class="header__account--btn" href="/wishlist">
                                     <svg  xmlns="http://www.w3.org/2000/svg" width="28.51" height="23.443" viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
                                     <span class="items__count  wishlist style2">02</span> 
                                 </a>
@@ -230,7 +179,7 @@
                                 <li class="offcanvas__sub_menu_li">
                                     <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
                                     <ul class="offcanvas__sub_menu">
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account.html">My Account</a></li>
+                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="/new-user-login">My Account</a></li>
                                         <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account-2.html">My Account 2</a></li>
                                         <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="404.html">404 Page</a></li>
                                         <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="login.html">Login Page</a></li>
@@ -241,10 +190,10 @@
                                     <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
                                     <ul class="offcanvas__sub_menu">
                                         <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="compare.html">Compare Pages</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout.html">Checkout page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout-2.html">Checkout Style 2</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout-3.html">Checkout Style 3</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout-4.html">Checkout Style 4</a></li>
+                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="/checkout">Checkout page</a></li>
+                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="/checkout">Checkout Style 2</a></li>
+                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="/checkout">Checkout Style 3</a></li>
+                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="/checkout">Checkout Style 4</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -265,7 +214,7 @@
                                 <li class="offcanvas__sub_menu_li"><a href="contact.html" class="offcanvas__sub_menu_item">Contact Us</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="cart.html" class="offcanvas__sub_menu_item">Cart Page</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="portfolio.html" class="offcanvas__sub_menu_item">Portfolio Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="wishlist.html" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
+                                <li class="offcanvas__sub_menu_li"><a href="/wishlist" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="login.html" class="offcanvas__sub_menu_item">Login Page</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="404.html" class="offcanvas__sub_menu_item">Error Page</a></li>
                             </ul>
@@ -362,7 +311,7 @@
                     </a>
                 </li>
                 <li class="offcanvas__stikcy--toolbar__list">
-                    <a class="offcanvas__stikcy--toolbar__btn" href="wishlist.html">
+                    <a class="offcanvas__stikcy--toolbar__btn" href="/wishlist">
                         <span class="offcanvas__stikcy--toolbar__icon"> 
                             <svg xmlns="http://www.w3.org/2000/svg" width="18.541" height="15.557" viewBox="0 0 18.541 15.557">
                             <path  d="M71.775,135.51a5.153,5.153,0,0,1,1.267-1.524,4.986,4.986,0,0,1,6.584.358,4.728,4.728,0,0,1,1.174,4.914,10.458,10.458,0,0,1-2.132,3.808,22.591,22.591,0,0,1-5.4,4.558c-.445.282-.9.549-1.356.812a.306.306,0,0,1-.254.013,25.491,25.491,0,0,1-6.279-4.8,11.648,11.648,0,0,1-2.52-4.009,4.957,4.957,0,0,1,.028-3.787,4.629,4.629,0,0,1,3.744-2.863,4.782,4.782,0,0,1,5.086,2.447c.013.019.025.034.057.076Z" transform="translate(-62.498 -132.915)" fill="currentColor"/>
@@ -450,8 +399,8 @@
                 <label class="minicart__conditions--label" for="accept">I agree with the <a class="minicart__conditions--link" href="privacy-policy.html">Privacy and Policy</a></label>
             </div>
             <div class="minicart__button d-flex justify-content-center">
-                <a class="primary__btn minicart__button--link" href="cart.html">View cart</a>
-                <a class="primary__btn minicart__button--link" href="checkout.html">Checkout</a>
+                <a class="primary__btn minicart__button--link" href="/cart">View cart</a>
+                <a class="primary__btn minicart__button--link" href="/checkout">Checkout</a>
             </div>
         </div>
         <!-- End offCanvas minicart -->
@@ -547,12 +496,12 @@
                             </button>
                         </h2>
                         <ul class="footer__widget--menu footer__widget--inner">
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="my-account.html">My Account</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="/new-user-login">My Account</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="cart.html">Shopping Cart</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.html">Login</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.html">Register</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="checkout.html">Checkout</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="wishlist.html">Wishlist</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="/checkout">Checkout</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="/wishlist">Wishlist</a></li>
                         </ul>
                     </div>
                     <div class="footer__widget">
@@ -835,7 +784,7 @@
                                         <button class="primary__btn quickview__cart--btn" type="submit">Add To Cart</button>  
                                     </div>
                                     <div class="quickview__variant--list variant__wishlist mb-15">
-                                        <a class="variant__wishlist--icon" href="wishlist.html" title="Add to wishlist">
+                                        <a class="variant__wishlist--icon" href="/wishlist" title="Add to wishlist">
                                             <svg class="quickview__variant--wishlist__svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                                             Add to Wishlist
                                         </a>

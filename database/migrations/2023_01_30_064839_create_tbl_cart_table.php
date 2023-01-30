@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_subcategory', function (Blueprint $table) {
-            $table->id('subcategory_id');
-            $table->string('subcategory_name');
+        Schema::create('tbl_cart', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_subcategory');
+        Schema::dropIfExists('tbl_cart');
     }
 };

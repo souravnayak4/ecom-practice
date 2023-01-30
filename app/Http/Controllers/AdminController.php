@@ -56,67 +56,57 @@ class AdminController extends Controller
 
     public function subcategory()
     {   
-        $all_subcategory=DB::table('tbl_subcategory')->get(); 
-       return view('admin.pages.subcategory')
-       ->with('all_subcategory',$all_subcategory);
+        $all = DB::table('tbl_subcategory')
+             ->join('tbl_category', 'tbl_subcategory.category_id', '=', 'tbl_category.category_id')
+             ->select('tbl_subcategory.*', 'tbl_category.category_name')
+             ->get();
+
+         $subcategory=view('admin.pages.subcategory')
+                   ->with('all',$all);
+       return view('admin.master')
+       ->with('subcategory',$subcategory);
           
     }
 
 
+
     public function add_subcategory(){
-        $subcategory=view('admin.pages.add_subcategory');
+        $all_category=DB::table('tbl_category')->get(); 
+        $subcategory=view('admin.pages.add_subcategory')
+                     ->with('all_category',$all_category);
         return view('admin.master')
         ->with('subcategory',$subcategory);
 
     }
-    public function save_subcategory(Request $request){
+  
 
-        //print($request->area_name);
-        DB::table('tbl_subcategory')->insert([
-            'subcategory_name' => $request->subcategory_name
+    public function save_subcategory(Request $request){
+        /* print($request->subcategory_name); */
+        
+         DB::table('tbl_subcategory')->insert([
+            'subcategory_name' => $request->subcategory_name,
+            'category_id' => $request->category_id
             
         ]);
         
         return Redirect::back();
-
+ 
     }
 
-   
+    public function delete_subcategory($id){
+        DB::table('tbl_subcategory')->where('subcategory_id',$id)->delete();
+        
+        
+        return Redirect::back();
+
+    }
+    
+
 
     
-    public function add_products(Request $request)
-    {   
-        $all_category=DB::table('tbl_category')->get();
-        $all_subcategory=DB::table('tbl_subcategory')->get();
-                 
-        return view('admin.pages.add_products')
-        ->with('all_category',$all_category)
-       ->with('all_subcategory',$all_subcategory);
-       
-       
-    return Redirect::back();
-    }
-    public function save_products(Request $request){
-     /* dd($request->all()); */
-        
-       /*  DB::table('products')->insert([
-            
-            'category_id' => $request->category,
-            'subcategory_id' => $request->subcategory_id,
-            'name' => $request->sproduct_name,
-            'small_description' => $request->small_description,
-            'description' => $request->description,
-            'original_price' => $request->original_price,
-            
+    
+   
 
-            
-        ]);
- */
-        
-        
-        return Redirect::back();
-
-    }
     public function all_products_details()
     {   
         return view('admin.pages.products_details');
@@ -165,17 +155,6 @@ class AdminController extends Controller
    
     
     
-    public function all_products()
-    {   
-        $products = product::all();
-        return view('admin.pages.products');
-    }
-     function insert(Request $mater)
-    {   
-        $name= $mater->get('pname');
-        $name= $mater->get('PPrice');
-        $name= $mater->file('image')->getclientOriginalName();
-        $req->image->move(public_path('images'),$pimage);
-    }
+    
     
 }

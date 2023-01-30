@@ -1,4 +1,9 @@
-
+@extends('frontend.master')
+@section('main_content')
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp; 
 <main class="login-form">
     <div class="cotainer">
         <div class="row justify-content-center">
@@ -21,16 +26,13 @@
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                 @endif
                             </div>
-                            <div class="form-group mb-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
+                           
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btn-block">Signin</button>
                             </div>
+                            <a href="{{-- {{ route('google.login') }} --}}" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Login with Google
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -38,3 +40,8 @@
         </div>
     </div>
 </main>
+ &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+@endsection 

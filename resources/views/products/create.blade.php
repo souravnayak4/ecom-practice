@@ -108,6 +108,14 @@
             </div>
 
         </div>
+        <div class="form-group">
+            <label>category</label>
+            <select class="form-control" name="category_id">
+                <option value="">Select category </option>
+                
+                <option value=""></option>
+            </select>
+            </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

@@ -35,6 +35,19 @@
                  <label>subcategory Name</label>
                  <input class="form-control" type="text" name="subcategory_name">
                </div>
+               
+               <div class="form-group">
+                <label>category</label>
+                <select class="form-control" name="category_id">
+                    <option value="">Select category </option>
+                    @foreach($all_category as $v_category)
+                    <option value="{{$v_category->category_id}}">{{$v_category->category_name}}</option>
+                    @endforeach
+                </select>
+                </div>
+
+
+
              <div class="col-auto my-1">
                <button type="submit" class="btn btn-primary">Submit</button>
              </div>

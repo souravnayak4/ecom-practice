@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminproductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\GoogleController;
 
 
 
@@ -66,6 +67,7 @@ Route::get('/delete-category/{id}', [AdminController::class, 'delete_category'])
 Route::get('/subcategory', [AdminController::class, 'subcategory']);
 Route::get('/add-subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/save-subcategory', [AdminController::class, 'save_subcategory']);
+Route::get('/delete-subcategory/{id}', [AdminController::class, 'delete_subcategory']);
 
 
 Route::get('/products-details', [AdminController::class, 'all_products_details']);
@@ -114,11 +116,20 @@ Route::post('/add-admin-product', [AdminproductController::class, 'store']);
 
 
 //frontend start//
+Route::prefix('google')->name('google.')->group( function(){
+    Route::get('login', [GoogleController::class, 'loginWithGoogle'])->name('login');
+    Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
+});
 Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
-Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
+Route::get('/my-account', [FrontendController::class, 'myaccount']); 
 Route::get('/frontend.dashboard', [AuthController::class, 'home']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/index', [FrontendController::class, 'index']);
 Route::get('/shop', [FrontendController::class, 'shop']);
+Route::get('/about', [FrontendController::class, 'about']);
+Route::get('/wishlist', [FrontendController::class, 'wishlist']);
+Route::get('/cart', [FrontendController::class, 'cart']);
+Route::get('/checkout', [FrontendController::class, 'checkout']);

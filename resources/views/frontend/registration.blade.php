@@ -1,3 +1,9 @@
+ @extends('frontend.master')
+@section('main_content')
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp; 
 <main class="login-form">
     <div class="cotainer">
         <div class="row justify-content-center">
@@ -61,3 +67,8 @@
         </div>
     </div>
   </main>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+  @endsection
