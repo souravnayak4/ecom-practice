@@ -49,7 +49,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if(Auth::guard('customer')->attempt($credentials)){
          /*    dd($request->all()); */
-            return redirect()->intended('/shop')
+            return redirect()->intended('/my-account')
                         ->withSuccess('You have Successfully loggedin');
         }
        /*  dd("not" ); */
@@ -66,6 +66,8 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'contact' => 'required',
+            'address' => 'required',
             'password' => 'required|min:6',
         ]);
            
@@ -83,7 +85,7 @@ class AuthController extends Controller
     public function home()
     {
         if(Auth::check()){
-            return view('frontend.pages.cart');
+            return view('/my-account');
         }
   
         return redirect("/new-user-login")->withSuccess('Opps! You do not have access');
@@ -99,19 +101,41 @@ class AuthController extends Controller
       return Customer::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'contact' => $data['contact'],
+        'address' => $data['address'],
         'password' => Hash::make($data['password'])
       ]);
     }
     
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function logout() {
+
+    public function signOut() {
         Session::flush();
         Auth::logout();
+   
+        return redirect('/new-user-login');
+    }
+
+    public function myaccountupdate(Request $request, customer $customer)
+
+    {
+
+        $request->validate([
+
+            'name' => 'required',
+            'address' => 'required',
+            'contact' => 'required',
+            'email' => 'required'
+
+        ]);
+
   
-        return Redirect('/new-user-login');
+
+        $input = $request->all();
+
+        $customer->update($input);
+        return redirect()->route('/my-account')
+
+                        ->with('success',' updated successfully');
+
     }
 }

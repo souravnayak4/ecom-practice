@@ -116,17 +116,19 @@ Route::post('/add-admin-product', [AdminproductController::class, 'store']);
 
 
 //frontend start//
-Route::prefix('google')->name('google.')->group( function(){
-    Route::get('login', [GoogleController::class, 'loginWithGoogle'])->name('login');
-    Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
-});
+
 Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
-Route::get('/my-account', [FrontendController::class, 'myaccount']); 
+
+Route::group(['middleware' => ["auth:customer", "verified"]], function (){ 
+Route::get('/my-account', [FrontendController::class, 'myaccount']);
+Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
+Route::put('/update-my-account/{id}', [AuthController::class, 'myaccountupdate'])->name('myaccountupdate.post');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+}); 
 Route::get('/frontend.dashboard', [AuthController::class, 'home']); 
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/index', [FrontendController::class, 'index']);
 Route::get('/shop', [FrontendController::class, 'shop']);
 Route::get('/about', [FrontendController::class, 'about']);

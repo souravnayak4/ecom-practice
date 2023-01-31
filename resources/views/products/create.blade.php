@@ -112,8 +112,9 @@
             <label>category</label>
             <select class="form-control" name="category_id">
                 <option value="">Select category </option>
-                
-                <option value=""></option>
+                @foreach($all_category as $v_category)
+                <option value="{{$v_category->category_id}}">{{$v_category->category_name}}</option>
+                @endforeach
             </select>
             </div>
 

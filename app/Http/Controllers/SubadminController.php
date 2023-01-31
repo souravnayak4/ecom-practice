@@ -72,9 +72,9 @@ class SubadminController extends Controller
 
        $this->SubadmindetailsMailable($request);
 
-        return redirect()->route('subadmins.index')
+        return redirect()->route('subadmins.index');
 
-         ->with('success','subadmin created successfully.');
+        
     }
   /*  */
  /*   public function login(Request $request)
@@ -171,9 +171,9 @@ class SubadminController extends Controller
 
     
 
-        return redirect()->route('subadmins.index')
+        return redirect()->route('subadmins.index');
 
-                        ->with('success','subadmin updated successfully');
+                       
 
     }
 
@@ -187,11 +187,11 @@ class SubadminController extends Controller
     {
         $subadmin->delete();
 
-     
 
-        return redirect()->route('subadmins.index')
 
-                        ->with('success','subadmin deleted successfully');
+        return redirect()->route('subadmins.index');
+
+                       
     }
 
     public function mailsubadmin(Subadmin $subadmin)

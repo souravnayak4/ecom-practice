@@ -48,4 +48,8 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.my-account');
     }
+    public function updatemyaccount()
+    {
+        return view('frontend.pages.update-my-account');
+    }
 }

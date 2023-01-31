@@ -33,6 +33,25 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="contact" class="col-md-4 col-form-label text-md-right">Contact</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="contact" class="form-control" name="contact" required autofocus>
+                                    @if ($errors->has('contact'))
+                                        <span class="text-danger">{{ $errors->first('contact') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <label for="address" class="col-md-4 col-form-label text-md-right">address</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="address" class="form-control" name="address" required autofocus>
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @endif
+                                </div>
+                            </div>
     
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>

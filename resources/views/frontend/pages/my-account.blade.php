@@ -28,238 +28,45 @@
         <!-- my account section start -->
         <section class="my__account--section section--padding">
             <div class="container">
-                <p class="account__welcome--text">Hello, Admin welcome to your dashboard!</p>
+                <p class="account__welcome--text">Hello, user!</p>
                 <div class="my__account--section__inner border-radius-10 d-flex">
                     <div class="account__left--sidebar">
                         <h2 class="account__content--title h3 mb-20">My Profile</h2>
                         <ul class="account__menu">
-                            <li class="account__menu--list active"><a href="my-account.html">Dashboard</a></li>
-                            <li class="account__menu--list"><a href="my-account-2.html">Addresses</a></li>
-                            <li class="account__menu--list"><a href="wishlist.html">Wishlist</a></li>
-                            <li class="account__menu--list"><a href="login.html">Log Out</a></li>
+                            <li class="nav-link"><a href="/my-account">Personal Information</a></li>
+                            <li class="nav-link"><a href="my-account-2.html">Addresses</a></li>
+                            <li class="nav-link"><a href="wishlist.html">Wishlist</a></li>
+                            <li class="nav-link"><a href="{{ route('signout') }}">Log Out</a></li>
+                            
                         </ul>
                     </div>
                     <div class="account__wrapper">
                         <div class="account__content">
-                            <h2 class="account__content--title h3 mb-20">Orders History</h2>
+                            <h2 class="account__content--title h3 mb-20">Personal Information</h2>
                             <div class="account__table--area">
                                 <table class="account__table">
                                     <thead class="account__table--header">
                                         <tr class="account__table--header__child">
-                                            <th class="account__table--header__child--items">Order</th>
-                                            <th class="account__table--header__child--items">Date</th>
-                                            <th class="account__table--header__child--items">Payment Status</th>
-                                            <th class="account__table--header__child--items">Fulfillment Status</th>
-                                            <th class="account__table--header__child--items">Total</th>	 	 	 	
+                                            <th class="account__table--header__child--items">Name</th>
+                                            <th class="account__table--header__child--items">address</th>
+                                            <th class="account__table--header__child--items">Mobile Number</th>
+                                            <th class="account__table--header__child--items">Email Address</th>
+                                            	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody class="account__table--body mobile__none">
                                         <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#2014</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Unfulfilled</td>
-                                            <td class="account__table--body__child--items">$40.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#2024</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Fulfilled</td>
-                                            <td class="account__table--body__child--items">$44.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#2164</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Unfulfilled</td>
-                                            <td class="account__table--body__child--items">$36.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#2345</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Unfulfilled</td>
-                                            <td class="account__table--body__child--items">$87.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#1244</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Fulfilled</td>
-                                            <td class="account__table--body__child--items">$66.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#3455</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Fulfilled</td>
-                                            <td class="account__table--body__child--items">$55.00 USD</td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">#4566</td>
-                                            <td class="account__table--body__child--items">February 06, 2022</td>
-                                            <td class="account__table--body__child--items">Paid</td>
-                                            <td class="account__table--body__child--items">Unfulfilled</td>
-                                            <td class="account__table--body__child--items">$87.00 USD</td>
-                                        </tr>
+                                            <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->name }}</td>
+                                            <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->address }}</td>
+                                            <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->contact }}</td>
+                                            <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->email }}</td>
+                                            <td class="account__table--body__child--items">
+                                                <a class="btn btn-primary" href="/update-my-account">up-date</a>
+                                           </td>
+                                        </tr> 
                                     </tbody>
-                                    <tbody class="account__table--body mobile__block">
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">
-                                                <strong>Order</strong>
-                                                <span>#2014</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Date</strong>
-                                                <span>November 24, 2022</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Payment Status</strong>
-                                                <span>Paid</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Fulfillment Status</strong>
-                                                <span>Unfulfilled</span>
-                                            </td>
-                                            <td class="account__table--body__child--items">
-                                                <strong>Total</strong>
-                                                <span>$40.00 USD</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                   
+                                    
                                 </table>
                             </div>
                         </div>

@@ -102,9 +102,15 @@
                             <li>
                                 <a class="" href="/new-user-login">Login/</a>
                                 <a class="" href="/new-user-registration">Register</a>
+                                
                             </li>     
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;  
+                            <li>
                                 
-                                
+                                <a class="" href="/my-account">My-Account</a>
+                            </li>   
                             &nbsp;
                             &nbsp;
                             &nbsp;
