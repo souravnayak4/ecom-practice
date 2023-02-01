@@ -123,9 +123,9 @@ Route::get('/new-user-registration', [AuthController::class, 'registration'])->n
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
 Route::group(['middleware' => ["auth:customer", "verified"]], function (){ 
-Route::get('/my-account', [FrontendController::class, 'myaccount']);
+Route::get('/user-account', [FrontendController::class, 'myaccount']);
 Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
-Route::put('/update-my-account/{id}', [AuthController::class, 'myaccountupdate'])->name('myaccountupdate.post');
+Route::put('/update-my-account', [AuthController::class, 'myaccountupdate']);
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 }); 
 Route::get('/frontend.dashboard', [AuthController::class, 'home']); 

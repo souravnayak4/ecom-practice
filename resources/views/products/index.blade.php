@@ -70,9 +70,10 @@
             <th>Name</th>
 
             <th>Details</th>
+            <th>Price</th>
 
             <th>Image</th>
-
+            <th>catagory_id</th>
             <th width="280px">Action</th>
 
         </tr>
@@ -84,32 +85,16 @@
             <td>{{$product->id}}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->detail }}</td>
+            <td>{{ $product->price }}</td>
             <td><img src="/image/{{ $product->image }}" width="100px"></td>
-
-            
-
-            
-
+            <td>{{ $product->category_id }}</td>
             <td>
 
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-
-     
-
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-
-      
-
+                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>    
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-
-     
-
                     @csrf
-
                     @method('DELETE')
-
-        
-
                     <button type="submit" class="btn btn-danger">Delete</button>
 
                 </form>
@@ -124,7 +109,7 @@
 
     
 
-    {!! $products->links() !!}
+    
 
         
 

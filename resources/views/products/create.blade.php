@@ -86,16 +86,30 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
-
             <div class="form-group">
-
                 <strong>Detail:</strong>
-
                 <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
-
             </div>
-
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Price</strong>
+                <textarea class="form-control" name="price" placeholder="Price"></textarea>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label>category</label>
+            <select class="form-control" name="category_id">
+                <option value="">Select category </option>
+                
+                @foreach($categories as $v_category)
+                    <option value="{{$v_category->id}}">{{$v_category->name}}</option>
+                    @endforeach
+               
+            </select>
+            </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -108,15 +122,7 @@
             </div>
 
         </div>
-        <div class="form-group">
-            <label>category</label>
-            <select class="form-control" name="category_id">
-                <option value="">Select category </option>
-                @foreach($all_category as $v_category)
-                <option value="{{$v_category->category_id}}">{{$v_category->category_name}}</option>
-                @endforeach
-            </select>
-            </div>
+       
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

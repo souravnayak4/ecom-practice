@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Category;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
@@ -24,15 +25,8 @@ class ProductController extends Controller
     public function index()
 
     {
-
-        $products = Product::latest()->paginate(5);
-
-    
-
-        return view('products.index',compact('products'))
-
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        $products = Product::with('category')->get();
+        return view('products.index', compact('products'));      
     }
 
    
@@ -50,8 +44,8 @@ class ProductController extends Controller
     public function create()
 
     {
-
-        return view('products.create');
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
 
     }
 
@@ -101,6 +95,8 @@ class ProductController extends Controller
             'name' => 'required',
 
             'detail' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
 
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
@@ -128,11 +124,11 @@ class ProductController extends Controller
 
         Product::create($input);
 
-     
 
-        return redirect()->route('products.index')
 
-                        ->with('success','Product created successfully.');
+        return redirect()->route('products.index');
+
+                       
 
     }
 

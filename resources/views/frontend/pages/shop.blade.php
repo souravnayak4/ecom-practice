@@ -271,7 +271,7 @@
 
        
     </section>
-    <!-- End shipping section -->
+   
 </main>
 
 @endsection

@@ -118,7 +118,6 @@ class AuthController extends Controller
     public function myaccountupdate(Request $request, customer $customer)
 
     {
-
         $request->validate([
 
             'name' => 'required',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -9,9 +10,10 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.index');
+        $categories = Category::all();
+        return view('frontend.pages.index', compact('categories'));
     }  
-    
+
 
     public function shop()
 

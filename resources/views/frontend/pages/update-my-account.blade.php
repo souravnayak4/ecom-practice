@@ -2,9 +2,8 @@
 @section('main_content')
 <section class="my__account--section section--padding">
     <div class="container">
-<form action="" method="POST " > 
-    
-   
+<form action="" method="POST " enctype="{{-- multipart/form-data --}}"> 
+
     @csrf
 
     @method('PUT')
