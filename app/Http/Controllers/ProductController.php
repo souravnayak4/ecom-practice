@@ -56,12 +56,30 @@ class ProductController extends Controller
         return Excel::Download(new ProductsExport,'Products.xlsx' );
 
     }
-    public function importsproducts()
-
+    public function add_category()
     {
+        return view('products.add_category');
+    }
 
+   /*  public function save_products_category(Request $request)
+    {
+        $request->validate([
+
+            'category_name' => 'required',
+
+        ]);
+
+        $input = $request->all();
+
+        Category::create($input);
+
+        return view('products.add_category');
+    } */
+
+
+    public function importsproducts()
+    {
         return view('products.excel');
-
     }
     
     public function productsexcel(Request $request)
@@ -149,12 +167,8 @@ class ProductController extends Controller
     public function show(Product $product)
 
     {
-
         return view('products.show',compact('product'));
-
     }
-
-     
 
     /**
 
@@ -169,11 +183,8 @@ class ProductController extends Controller
      */
 
     public function edit(Product $product)
-
     {
-
         return view('products.edit',compact('product'));
-
     }
 
     

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use DB;
 
 class FrontendController extends Controller
 {
@@ -14,7 +14,10 @@ class FrontendController extends Controller
         return view('frontend.pages.index', compact('categories'));
     }  
 
-
+    public function about()
+    {
+        return view('frontend.pages.about');
+    }
     public function shop()
 
     {
@@ -29,10 +32,20 @@ class FrontendController extends Controller
 
     }
 
-    public function about()
+    public function  product_details($id)
     {
-        return view('frontend.pages.about');
+
+        $details=DB::table('products')->where('id',$id)->first();
+        return view('frontend.pages.product-details')->with('details',$details);
+       
     }
+
+    public function blogdetails($id)
+    {
+      $blog =DB::table('blog')->where('id',$id)->first();
+      return view('details')->with('blog',$blog);
+    }
+
     public function wishlist()
     {
         return view('frontend.pages.wishlist');
@@ -42,13 +55,27 @@ class FrontendController extends Controller
         return view('frontend.pages.cart');
     }
     
+    public function myaccount()
+    {
+        return view('frontend.pages.my-account');
+    }
     public function checkout()
     {
         return view('frontend.pages.checkout');
     }
-    public function myaccount()
+    public function addToCart(Request $request)
     {
+        if ($request->session()->has('customer'))
+       {
+        return 'hello';
+
+       }
+       else
+       {
         return view('frontend.pages.my-account');
+       }
+        
+        
     }
     public function updatemyaccount()
     {

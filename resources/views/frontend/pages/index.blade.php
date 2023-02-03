@@ -93,7 +93,7 @@
                                 
                                 
                                     <div class="banner__items--content style2 right">
-                                        <h3 class="banner__items--content__title style2"></<br>
+                                        <h3 class="banner__items--content__title style2"><br>
                                             </h3>
                                         <span class="banner__items--content__link style2"></span>
                                     </div>

@@ -21,7 +21,7 @@ class AdminController extends Controller
 
 
 
-    /*  public function category()
+     public function category()
     {  
         $all_category=DB::table('tbl_category')->get(); 
        return view('admin.pages.category')
@@ -47,7 +47,7 @@ class AdminController extends Controller
         
         return Redirect::back();
 
-    } */
+    } 
     public function delete_category($id){
         DB::table('tbl_category')->where('category_id',$id)->delete();
         

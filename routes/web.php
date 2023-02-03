@@ -98,7 +98,8 @@ Route::post('insertData',[AdminController::class,'insert']);
 
 
 //products
-
+Route::get('/add-products-category', [ProductController::class, 'add_category']);
+Route::post('/save-products-category', [ProductController::class, 'save_products_category']);
 Route::resource('products', ProductController::class);
 Route::get('excel-products', [ProductController::class, 'exportproducts']);
 Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
@@ -122,16 +123,18 @@ Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.pos
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
-Route::group(['middleware' => ["auth:customer", "verified"]], function (){ 
-Route::get('/user-account', [FrontendController::class, 'myaccount']);
+/* Route::group(['middleware' => ["auth:customer", "verified"]], function (){  */
+Route::get('/my-account', [FrontendController::class, 'myaccount']);
 Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
 Route::put('/update-my-account', [AuthController::class, 'myaccountupdate']);
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
-}); 
+ 
 Route::get('/frontend.dashboard', [AuthController::class, 'home']); 
 Route::get('/index', [FrontendController::class, 'index']);
-Route::get('/shop', [FrontendController::class, 'shop']);
 Route::get('/about', [FrontendController::class, 'about']);
+Route::get('/shop', [FrontendController::class, 'shop']);
+Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
 Route::get('/wishlist', [FrontendController::class, 'wishlist']);
 Route::get('/cart', [FrontendController::class, 'cart']);
 Route::get('/checkout', [FrontendController::class, 'checkout']);
+Route::post('add_to_cart', [FrontendController::class, 'addToCart']);
