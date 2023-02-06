@@ -22,22 +22,23 @@
         </div>
         <!--end breadcrumb-->
 
-        <form method="post" action="/save-products-category">
+        <form method="post" action="/update-product-category">
           @csrf
          <div class="form-row align-items-center">
           <div class="ms-auto"><a href="/all-category" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>back </a></div>
-             <h1>Add Category</h1>
+             <h1>update Category</h1>
              <div class="form-group">
-               <label>category Name</label>
-               <input class="form-control" type="text" name="name">
-             </div>
+                <label>Clinic Name</label>
+                <input class="form-control" type="text" name="name" value="{{$category->name}}">
+              <input type="hidden" name="id" value="{{$category->id}}">
+              </div>
              <div>
-              <td>          
-                    <select name="status" class="form-control">                  
+             <td>          
+              <select name="status" class="form-control">                  
                       <option value="0">Enable</option>
                       <option value="1">Disable</option>           
-                    </select>
-             </td>
+              </select>
+            </td>
           </div>
            <div class="col-auto my-1">
              <button type="submit" class="btn btn-primary">Submit</button>

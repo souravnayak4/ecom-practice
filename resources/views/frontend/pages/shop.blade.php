@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="product__items--content">
                                                     <span class="product__items--content__subtitle"><td>{{ $product->name }}</td></span>
-                                                    <h4 class="product__items--content__title"><a href="product-details.html"><td>{{ $product->detail }}</td></a></h4>
+                                                    
                                                     <div class="product__items--price">
                                                         <span class="current__price">RS {{ $product->price }}</span>
 
@@ -155,22 +155,19 @@
                                                         </li>
                                                     </ul>
                                                     <ul class="product__items--action d-flex">
-                                                        <li class="product__items--action__list">
-                                                            <a class="product__items--action__btn add__to--cart" href="">
-                                                                
+                                                        <li class="product__items--action__list">     
                                                                    
                                                                 <form action="add_to_cart" method="POST">
                                                                     @csrf
                                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                                     <button class="btn btn-primary">Add to cart</button>
                                                                 </form>
-                                                            </a>
                                                         </li>
                                                         <li class="product__items--action__list">
-                                                            <a class="product__items--action__btn" href="/wishlist">
+                                                            {{-- <a class="product__items--action__btn" href="/wishlist"> --}}
                                                                 <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="25.51" height="23.443" viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
                                                                 <span class="visually-hidden">Wishlist</span> 
-                                                            </a>
+                                                 {{--            </a> --}}
                                                         </li>
                                                         <li class="product__items--action__list">
                                                             <div>

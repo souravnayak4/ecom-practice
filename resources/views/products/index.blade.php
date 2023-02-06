@@ -73,7 +73,7 @@
             <th>Price</th>
 
             <th>Image</th>
-            <th>catagory_id</th>
+            <th>catagory </th>
             <th width="280px">Action</th>
 
         </tr>
@@ -87,7 +87,7 @@
             <td>{{ $product->detail }}</td>
             <td>{{ $product->price }}</td>
             <td><img src="/image/{{ $product->image }}" width="100px"></td>
-            <td>{{ $product->category_id }}</td>
+            <td>{{ $product->category->name }}</td>
             <td>
 
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
@@ -97,20 +97,12 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
 
-                </form>
+                           
+                </form>            
+            </td>        
+        </tr>        
+        @endforeach   
+     </table>                    
+     @endsection
 
-            </td>
-
-        </tr>
-
-        @endforeach
-
-    </table>
-
-    
-
-    
-
-        
-
-@endsection
+     

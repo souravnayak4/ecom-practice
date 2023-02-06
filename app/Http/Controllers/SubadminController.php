@@ -8,7 +8,9 @@ use App\Mail\MailSubadminMailable;
 use Illuminate\support\Facades\Mail;
 use App\Mail\SubadmindetailsMailable;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
+use Toastr;
+use Redirect;
 class SubadminController extends Controller
 {
     /**
@@ -71,7 +73,7 @@ class SubadminController extends Controller
         
 
        $this->SubadmindetailsMailable($request);
-
+       Toastr::success('category delete', 'Info', ["positionClass" => "toast-top-center"]);
         return redirect()->route('subadmins.index');
 
         
@@ -187,10 +189,8 @@ class SubadminController extends Controller
     {
         $subadmin->delete();
 
-
-
+        Toastr::warning('Subadmin delete', 'Info', ["positionClass" => "toast-top-center"]);
         return redirect()->route('subadmins.index');
-
                        
     }
 

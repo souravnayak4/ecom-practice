@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="{{asset('admin')}}/css/dark-theme.css" />
 	<link rel="stylesheet" href="{{asset('admin')}}/css/semi-dark.css" />
 	<link rel="stylesheet" href="{{asset('admin')}}/css/header-colors.css" />
+	<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 	<title>Ecom </title>
 </head>
 
@@ -49,7 +50,7 @@
 						</div>
 						<div class="menu-title">Dashboard</div>
 					</a>
-					<a class="" href="category">
+					<a class="" href="/all-category">
 						<div class="parent-icon"><i class="bx bx-repeat"></i>
 						</div>
 						<div class="menu-title">Category</div>
@@ -284,6 +285,10 @@
 		new PerfectScrollbar('.product-list');
 		new PerfectScrollbar('.customers-list');
 	</script>
+
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
 </body>
 
 

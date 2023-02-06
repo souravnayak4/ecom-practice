@@ -34,7 +34,6 @@
                         <h2 class="account__content--title h3 mb-20">My Profile</h2>
                         <ul class="account__menu">
                             <li class="nav-link"><a href="/my-account">Personal Information</a></li>
-                            <li class="nav-link"><a href="my-account-2.html">Addresses</a></li>
                             <li class="nav-link"><a href="wishlist.html">Wishlist</a></li>
                             <li class="nav-link"><a href="{{ route('signout') }}">Log Out</a></li>
                             

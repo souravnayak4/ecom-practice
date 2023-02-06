@@ -20,7 +20,7 @@
 
   <!-- Custom Style CSS -->
   <link rel="stylesheet" href="{{asset('frontend')}}/css/style.css">
-
+  <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
@@ -804,7 +804,8 @@
   <script src="{{asset('frontend')}}/js/vendor/bootstrap.min.js" defer="defer"></script>
   <script src="{{asset('frontend')}}/js/plugins/swiper-bundle.min.js"></script>
   <script src="{{asset('frontend')}}/js/plugins/glightbox.min.js"></script>
-
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Customscript js -->
   <script src="{{asset('frontend')}}/js/script.js"></script>
   

@@ -6,22 +6,76 @@ use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
 use Excel;
+use DB;
+use Redirect;
+use Toastr;
   
 
 class ProductController extends Controller
 
 {
+    public function category()
+    {  
+        $all_category=DB::table('categories')->get(); 
+       return view('products.category')
+       ->with('all_category',$all_category);
+  
+    }
 
-    /**
+    public function addProductscategory()
+    {
+        return view('products.add_category');
+    }
 
-     * Display a listing of the resource.
+ 
+    public function saveProductsCategory(Request $request){
 
-     *
+        /* print($request->name); */
+         DB::table('categories')->insert([
+            'name' => $request->name,
+            'status' => $request->status
+            
+        ]); 
+        return view('products.add_category');  
 
-     * @return \Illuminate\Http\Response
+    } 
 
-     */
+     public function delete_category($id){
+        DB::table('categories')->where('id',$id)->delete();
+        return Redirect::back();
 
+    } 
+
+    public function editProductscategory( $id)
+    {
+
+        $category=DB::table('categories')->where('id',$id)->first();
+        $category=view('products.update-category')
+                ->with('category',$category);
+        return view('admin.master')
+        ->with('category',$category);
+
+        
+    }
+
+    public function updateProductscategory(Request $request){
+
+        
+        DB::table('categories')
+              ->where('id', $request->id)
+              ->update(['name' => $request->name]);
+
+        Toastr::success('category Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+        
+        return Redirect::back();
+
+    }
+
+
+
+
+
+   
     public function index()
 
     {
@@ -29,17 +83,6 @@ class ProductController extends Controller
         return view('products.index', compact('products'));      
     }
 
-   
-
-    /**
-
-     * Show the form for creating a new resource.
-
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
 
     public function create()
 
@@ -56,25 +99,6 @@ class ProductController extends Controller
         return Excel::Download(new ProductsExport,'Products.xlsx' );
 
     }
-    public function add_category()
-    {
-        return view('products.add_category');
-    }
-
-   /*  public function save_products_category(Request $request)
-    {
-        $request->validate([
-
-            'category_name' => 'required',
-
-        ]);
-
-        $input = $request->all();
-
-        Category::create($input);
-
-        return view('products.add_category');
-    } */
 
 
     public function importsproducts()
@@ -111,20 +135,16 @@ class ProductController extends Controller
         $request->validate([
 
             'name' => 'required',
-
             'detail' => 'required',
             'price' => 'required',
             'category_id' => 'required',
-
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
 
-  
-
         $input = $request->all();
+       
 
-  
 
         if ($image = $request->file('image')) {
 
@@ -138,7 +158,8 @@ class ProductController extends Controller
 
         }
 
-    
+        
+        
 
         Product::create($input);
 
@@ -210,8 +231,10 @@ class ProductController extends Controller
         $request->validate([
 
             'name' => 'required',
-
-            'detail' => 'required'
+            'detail' => 'required',
+            'price' => 'required'
+            
+           
 
         ]);
 
@@ -241,11 +264,12 @@ class ProductController extends Controller
 
         $product->update($input);
 
-    
+       
 
-        return redirect()->route('products.index')
 
-                        ->with('success','Product updated successfully');
+
+        return redirect()->route('products.index');
+
 
     }
 
@@ -266,15 +290,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
 
     {
-
         $product->delete();
 
-     
-
-        return redirect()->route('products.index')
-
-                        ->with('success','Product deleted successfully');
-
+        return redirect()->route('products.index');                   
     }
+
+
+
+
    
 }

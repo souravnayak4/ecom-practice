@@ -6,10 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubadminController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\AdminproductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\GoogleController;
+
 
 
 
@@ -53,25 +52,17 @@ Route::middleware(['auth', 'user-access:super-admin'])->group(function () {
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 // admin dashboard
 
-
+//product and category section
 //Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::get('/orders', [AdminController::class, 'orders']);
-Route::get('/category', [AdminController::class, 'category']);
-
-Route::get('/add-category', [AdminController::class, 'add_category']);
-Route::post('/save-category', [AdminController::class, 'save_category']);
-Route::get('/delete-category/{id}', [AdminController::class, 'delete_category']);
-
-
 
 Route::get('/subcategory', [AdminController::class, 'subcategory']);
 Route::get('/add-subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/save-subcategory', [AdminController::class, 'save_subcategory']);
 Route::get('/delete-subcategory/{id}', [AdminController::class, 'delete_subcategory']);
-
-
 Route::get('/products-details', [AdminController::class, 'all_products_details']);
-
+Route::get('/update-product-subcategory/{id}', [AdminController::class, 'editProductssubcategory'])->name('products.update-subcategory');
+Route::post('/update-product-subcategory', [AdminController::class, 'updateProductssubcategory']);
 
 
 
@@ -81,60 +72,45 @@ Route::get('/products-details', [AdminController::class, 'all_products_details']
 
 
 Route::get('/adminlogin', [AdminController::class, 'adminlogin'])->name('admin.login');
-
-
-
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
 Route::get('/image-upload', [FileUpload::class, 'createForm']);
 Route::post('/image-upload', [FileUpload::class, 'fileUpload'])->name('imageUpload');
- 
-
-
 Route::post('insertData',[AdminController::class,'insert']);
 
 
-//products
-Route::get('/add-products-category', [ProductController::class, 'add_category']);
-Route::post('/save-products-category', [ProductController::class, 'save_products_category']);
+////product and category section
+Route::get('/all-category', [ProductController::class, 'category']);
+Route::get('/add-products-category', [ProductController::class, 'addProductscategory']);
+Route::post('/save-products-category', [ProductController::class, 'saveProductsCategory']);
+Route::get('/delete-products-category/{id}', [ProductController::class, 'delete_category']);
+Route::get('/update-product-category/{id}', [ProductController::class, 'editProductscategory'])->name('products.update-category');
+Route::post('/update-product-category', [ProductController::class, 'updateProductscategory']);
+
 Route::resource('products', ProductController::class);
 Route::get('excel-products', [ProductController::class, 'exportproducts']);
 Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
 Route::post('import-products', [ProductController::class, 'productsexcel'])->name('import-products');
-
+//product and category section
 Route::resource('subadmins', SubadminController::class);
 Route::get('login', [SubadminController::class, 'subadminindex'])->name('login');
 Route::post('postlogin', [SubadminController::class, 'login'])->name('postlogin');
-
-
-
-
-Route::get('/add-admin-product', [AdminproductController::class, 'insert'])->name('product.insert');
-Route::post('/add-admin-product', [AdminproductController::class, 'store']);
-
-
-//frontend start//
-
+//frontend start////user login system
 Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
-
-/* Route::group(['middleware' => ["auth:customer", "verified"]], function (){  */
+/* Route::group(['middleware' => ["auth:customer", "verified"]], function () { */    
 Route::get('/my-account', [FrontendController::class, 'myaccount']);
 Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
-Route::put('/update-my-account', [AuthController::class, 'myaccountupdate']);
+Route::put('/update-my-account', [AuthController::class, 'myaccountupdate']);   
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
- 
-Route::get('/frontend.dashboard', [AuthController::class, 'home']); 
-Route::get('/index', [FrontendController::class, 'index']);
-Route::get('/about', [FrontendController::class, 'about']);
-Route::get('/shop', [FrontendController::class, 'shop']);
-Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
-Route::get('/wishlist', [FrontendController::class, 'wishlist']);
-Route::get('/cart', [FrontendController::class, 'cart']);
-Route::get('/checkout', [FrontendController::class, 'checkout']);
-Route::post('add_to_cart', [FrontendController::class, 'addToCart']);
+/* }); *//*
+ Route::get('/frontend.dashboard', [AuthController::class, 'home']);  */
+ Route::get('/index', [FrontendController::class, 'index']);
+ Route::get('/about', [FrontendController::class, 'about']);
+ Route::get('/shop', [FrontendController::class, 'shop']);
+ Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
+ Route::get('/wishlist', [FrontendController::class, 'wishlist']);
+ Route::get('/cart', [FrontendController::class, 'cart']);
+ Route::get('/checkout', [FrontendController::class, 'checkout']);
+ Route::post('add_to_cart', [FrontendController::class, 'addToCart']);

@@ -33,9 +33,8 @@
                             <form action="#">
                                 <h2 class="product__details--info__title mb-15"> {{ $details->name }}</h2>
                                 <div class="product__details--info__price mb-10">
-                                    <span class="current__price">$110</span>
-                                    <span class="price__divided"></span>
-                                    <span class="old__price">$178</span>
+                                    <span class="current__price">${{ $details->price }}</span>
+                                    
                                 </div>
                                 <div class="product__details--info__rating d-flex align-items-center mb-15">
                                     <ul class="rating d-flex justify-content-center">
@@ -77,21 +76,11 @@
                                     </ul>
                                     <span class="product__items--rating__count--number">(24)</span>
                                 </div>
-                                <p class="product__details--info__desc mb-15">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut numquam ullam is recusandae laborum explicabo id sequi quisquam, ab sunt deleniti quidem ea animi facilis quod nostrum odit! Repellendus voluptas suscipit cum harum dolor sciunt.</p>
+                                <p class="product__details--info__desc mb-15">{{ $details->detail }}</p>
                                 <div class="product__variant">
                                    
                                     </div>
-                                    <div class="product__variant--list mb-15">
-                                        <fieldset class="variant__input--fieldset weight">
-                                            <legend class="product__variant--title mb-8">Weight :</legend>
-                                            <input id="weight1" name="weight" type="radio" checked>
-                                            <label class="variant__size--value red" for="weight1">5 kg</label>
-                                            <input id="weight2" name="weight" type="radio">
-                                            <label class="variant__size--value red" for="weight2">3 kg</label>
-                                            <input id="weight3" name="weight" type="radio">
-                                            <label class="variant__size--value red" for="weight3">2 kg</label>
-                                        </fieldset>
-                                    </div>
+                                    
                                     <div class="product__variant--list quantity d-flex align-items-center mb-20">
                                         <div class="quantity__box">
                                             <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
@@ -110,10 +99,8 @@
                                         <button class="variant__buy--now__btn primary__btn" type="submit">Buy it now</button>
                                     </div>
                                     <div class="product__details--info__meta">
-                                        <p class="product__details--info__meta--list"><strong>Barcode:</strong>  <span>565461</span> </p>
-                                        <p class="product__details--info__meta--list"><strong>Sky:</strong>  <span>4420</span> </p>
-                                        <p class="product__details--info__meta--list"><strong>Vendor:</strong>  <span>Belo</span> </p>
-                                        <p class="product__details--info__meta--list"><strong>Type:</strong>  <span>Dress</span> </p>
+                                        <p class="product__details--info__meta--list"><strong>Category:</strong>  <span>{{ $details->id }}</span> </p>
+                                        
                                     </div>
                                 </div>
                                 <div class="quickview__social d-flex align-items-center mb-15">

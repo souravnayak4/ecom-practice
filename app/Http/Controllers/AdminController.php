@@ -21,65 +21,19 @@ class AdminController extends Controller
 
 
 
-     public function category()
-    {  
-        $all_category=DB::table('tbl_category')->get(); 
-       return view('admin.pages.category')
-       ->with('all_category',$all_category);
-       
-        
-    }
-    public function add_category(){
-        $category=view('admin.pages.add_category');
-        return view('admin.master')
-        ->with('category',$category);
-
-    }
-    public function save_category(Request $request){
-
-        //print($request->area_name);
-        DB::table('tbl_category')->insert([
-            'category_name' => $request->category_name
-            
-        ]);
-
-       
-        
-        return Redirect::back();
-
-    } 
-    public function delete_category($id){
-        DB::table('tbl_category')->where('category_id',$id)->delete();
-        
-        
-        return Redirect::back();
-
-    }
-
-
+   
     public function subcategory()
     {   
-        $all = DB::table('tbl_subcategory')
-             ->join('tbl_category', 'tbl_subcategory.category_id', '=', 'tbl_category.category_id')
-             ->select('tbl_subcategory.*', 'tbl_category.category_name')
-             ->get();
-
-         $subcategory=view('admin.pages.subcategory')
-                   ->with('all',$all);
-       return view('admin.master')
-       ->with('subcategory',$subcategory);
-          
+        $all_subcategory=DB::table('tbl_subcategory')->get(); 
+        return view('admin.pages.subcategory')
+        ->with('all_subcategory',$all_subcategory);
     }
 
 
 
-    public function add_subcategory(){
-        $all_category=DB::table('tbl_category')->get(); 
-        $subcategory=view('admin.pages.add_subcategory')
-                     ->with('all_category',$all_category);
-        return view('admin.master')
-        ->with('subcategory',$subcategory);
-
+    public function add_subcategory()
+    {
+        return view('admin.pages.add_subcategory');
     }
   
 
@@ -88,24 +42,44 @@ class AdminController extends Controller
         
          DB::table('tbl_subcategory')->insert([
             'subcategory_name' => $request->subcategory_name,
-            'category_id' => $request->category_id
+            'status' => $request->status
             
         ]);
-        
+        Toastr::success(' save subcategory  Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         return Redirect::back();
  
     }
 
     public function delete_subcategory($id){
         DB::table('tbl_subcategory')->where('subcategory_id',$id)->delete();
-        
-        
+        Toastr::warning('subcategory delete Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         return Redirect::back();
 
     }
     
+    public function editProductsubscategory( $subcategory_id)
+    {
 
+        $subcategory=DB::table('tbl_subcategory')->where('subcategory_id',$subcategory_id)->first();
+        $subcategory=view('admin.pages.update-subcategory')
+                ->with('subcategory',$subcategory);
+        return view('admin.master')
+        ->with('subcategory',$subcategory);
 
+        
+    }
+    public function updateProductssubcategory(Request $request){
+
+        
+        DB::table('tbl_subcategory')
+              ->where('id', $request->subcategory_id)
+              ->update(['name' => $request->subcategory_name]);
+
+        Toastr::success('subcategory Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+        
+        return Redirect::back();
+
+    }
     
     
    

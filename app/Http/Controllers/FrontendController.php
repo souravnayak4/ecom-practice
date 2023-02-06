@@ -5,7 +5,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use DB;
-
+use Toastr;
+use Redirect;
 class FrontendController extends Controller
 {
     public function index()
@@ -40,11 +41,7 @@ class FrontendController extends Controller
        
     }
 
-    public function blogdetails($id)
-    {
-      $blog =DB::table('blog')->where('id',$id)->first();
-      return view('details')->with('blog',$blog);
-    }
+ 
 
     public function wishlist()
     {
@@ -63,14 +60,14 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.checkout');
     }
-    public function addToCart(Request $request)
+    public function addToCart(/* Request $request */)
     {
-        if ($request->session()->has('customer'))
+        /* if ($request->session()->has('customer'))
        {
         return 'hello';
 
        }
-       else
+       else */
        {
         return view('frontend.pages.my-account');
        }

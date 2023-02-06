@@ -102,14 +102,12 @@
         <div class="form-group">
             <label>category</label>
             <select class="form-control" name="category_id">
-                <option value="">Select category </option>
-                
+                <option value="">Select category </option>             
                 @foreach($categories as $v_category)
                     <option value="{{$v_category->id}}">{{$v_category->name}}</option>
-                    @endforeach
-               
+                    @endforeach              
             </select>
-            </div>
+        </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 

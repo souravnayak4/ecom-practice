@@ -1,7 +1,17 @@
 @extends('admin.master')
 @section('main_content')
 
+<script type="text/javascript">
+    function check_delete() {
+        chk = confirm("Are you sure to delete item ?");
+        if (chk) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+</script>
 <!--start page wrapper -->
 <div class="page-wrapper">
     <div class="page-content">
@@ -13,7 +23,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Sub category Management</li>
+                        <li class="breadcrumb-item active" aria-current="page">category Management</li>
                     </ol>
                 </nav>
             </div>
@@ -27,53 +37,45 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
                     </div>
-                  <div class="ms-auto"><a href="/add-subcategory" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New subcategory</a></div>
+                  <div class="ms-auto"><a href="/add-products-category" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Category</a></div>
+                  
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead class="table-light">
-                            <tr>
-                                <th>Subcategory name</th> 
-                                <th>Subcategory </th>
-                                <th>Action</th>
-                                <th>Delete </th>
-                                
+                            <tr> 
+                                <th>Category Name</th>
+                                <th>Actions</th>
+                                <th>Category Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            @foreach($all_subcategory as $s_category)
-                            
-                            
+                            @foreach($all_category as $category)                       
                             <tr>
-                                <td>{{ $s_category->subcategory_name }}</td>
-                                
+                                <td>{{ $category->name }}</td>
+                                <td><a href="{{URL::to('delete-products-category/'.$category->id)}}" data-toggle="tooltip" data-original-title="Close"onclick="return check_delete();">Delete  
+                                    <a class="btn btn-primary" href="{{ route('products.update-category',$category->id) }}">EDIT</a>
+                                </td>
                                 <td>
-                                    @if($s_category->status==0 )
+                                    @if( $category->status==0 )
                                        <h5 style="color:green;">  Active</h5>
-                                    @elseif($s_category->status==1 )
-                                    <h5 style="color:red;">  Dactive</h5>
+                                    @elseif( $category->status==1 )
+                                    <h5style="color:green;">  Dactive</h6>
                                     @endif
 
                                 </td>
                                 
-                                
-                                <td>
-                                    <div class="d-flex order-actions">
-                                            <a class="btn btn-primary" href="{{ route('products.update-subcategory',$s_category->subcategory_id) }}">update</a> 
-                                            <a href="{{URL::to('delete-subcategory/'.$s_category->subcategory_id)}}" class="ms-3"><i class='bx bxs-trash'></i></a>
-                                    </div>
-                                </td>
                             </tr>
                             @endforeach
+                           
                         </tbody>
-
-
                         
                     </table>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 <!--end page wrapper -->
