@@ -55,14 +55,15 @@
                                     <h5 style="color:red;">  Dactive</h5>
                                     @endif
 
-                                </td>
-                                
-                                
+                                </td>                              
                                 <td>
                                     <div class="d-flex order-actions">
-                                            <a class="btn btn-primary" href="{{ route('products.update-subcategory',$s_category->subcategory_id) }}">update</a> 
-                                            <a href="{{URL::to('delete-subcategory/'.$s_category->subcategory_id)}}" class="ms-3"><i class='bx bxs-trash'></i></a>
-                                    </div>
+                                    <a class="btn btn-primary" href="{{ route('products.update-subcategory',$s_category->subcategory_id) }}">update</a> </div>           
+                                </td>
+                                <td>
+                                    <div class="d-flex order-actions">
+                                        <a href="{{URL::to('delete-subcategory/'.$s_category->subcategory_id)}}" class="ms-3"><i class='bx bxs-trash'></i></a>
+                                </div>
                                 </td>
                             </tr>
                             @endforeach

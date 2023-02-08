@@ -99,7 +99,7 @@
             </div>
         </div>
        
-        <div class="form-group">
+{{--         <div class="form-group">
             <label>category</label>
             <select class="form-control" name="category_id">
                 <option value="">Select category </option>             
@@ -107,7 +107,33 @@
                     <option value="{{$v_category->id}}">{{$v_category->name}}</option>
                     @endforeach              
             </select>
+        </div> --}}
+
+        <div class="form-group">
+            <label>category</label>
+            <select class="form-control" name="category_id">
+                <option value="">Select category </option>
+                @foreach($categories as $category)             
+                @if( $category->status==0 )
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @elseif( $category->status==1 )
+                    @endif
+                    @endforeach 
+            </select>
         </div>
+
+
+ 
+ 
+{{--         <div class="form-group">
+            <label>category</label>
+            <select class="form-control" name="subcategory_id">
+                <option value="">Select category </option>             
+                @foreach($all_subcategory as $v_category)
+                    <option value="{{$v_category->subcategory_id}}">{{$v_category->subcategory_name}}</option>
+                    @endforeach              
+            </select>
+        </div> --}}
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 

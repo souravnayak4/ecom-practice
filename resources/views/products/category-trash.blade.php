@@ -37,9 +37,8 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
                     </div>
-                  <div class="ms-auto"><a href="/add-products-category" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Category</a></div>
-                  <div class="ms-auto"><a href= "/category-trash" ><iconify-icon icon="mdi:trash-variant" width="40" height="40"></iconify-icon></iconify-icon></a></div>
-                 
+                  
+                  
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0">
@@ -47,10 +46,7 @@
                             <tr> 
                                 <th>Category Name</th>
                                 <th>Category Status</th>
-                                <th>Action</th>
- {{--                                <th>Trash</th>
-                                <th>Delete</th> --}}
-                                
+                                <th>Actions</th>
                                 
                             </tr>
                         </thead>
@@ -67,13 +63,13 @@
                                     @endif
 
                                 </td>
-                               
-                                <td> <a  href="{{ route('products.update-category',$category->id) }}"><i class='bx bxs-edit'></i></a>
                                 
-                                <a href="{{URL::to('trash-products-category/'.$category->id)}}" data-toggle="tooltip" data-original-title="Close"onclick="return check_delete();"><iconify-icon icon="mdi:trash-variant"></iconify-icon></a> 
-                                
-                                <a href="{{URL::to('delete-products-category/'.$category->id)}}" data-toggle="tooltip" data-original-title="Close"onclick="return check_delete();"> <i class='bx bxs-trash'></i></a>
+                                <td><a href="{{URL::to('delete-products-category/'.$category->id)}}" data-toggle="tooltip" data-original-title="Close"onclick="return check_delete();">Delete  
                                 </td>
+                               
+                                {{-- <td><a href="{{URL::to('trash-products-category/'.$category->id)}}" data-toggle="tooltip" data-original-title="Close"onclick="return check_delete();">Trash 
+                                </td> --}}
+                                
                             </tr>
                             @endforeach
                            

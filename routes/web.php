@@ -80,7 +80,9 @@ Route::post('insertData',[AdminController::class,'insert']);
 
 ////product and category section
 Route::get('/all-category', [ProductController::class, 'category']);
-Route::get('/add-products-category', [ProductController::class, 'addProductscategory']);
+Route::get('/category-trash', [ProductController::class, 'trash']);
+ Route::get('/trash-products-category/{id}', [ProductController::class, 'trash_category']);
+ Route::get('/add-products-category', [ProductController::class, 'addProductscategory']);
 Route::post('/save-products-category', [ProductController::class, 'saveProductsCategory']);
 Route::get('/delete-products-category/{id}', [ProductController::class, 'delete_category']);
 Route::get('/update-product-category/{id}', [ProductController::class, 'editProductscategory'])->name('products.update-category');

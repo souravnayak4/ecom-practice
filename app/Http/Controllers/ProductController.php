@@ -13,15 +13,30 @@ use Toastr;
 
 class ProductController extends Controller
 
-{
+{ 
     public function category()
     {  
         $all_category=DB::table('categories')->get(); 
        return view('products.category')
        ->with('all_category',$all_category);
   
-    }
+    } 
+ /*    public function category()
+    {
+        $all_category = Category::all();
+        $data = compact('all_category');
+        return view('products.category')->with($data);
 
+  
+    } */
+
+     public function trash()
+    {
+        $all_category = Category::onlyTrashed()->get();
+        $data = compact('all_category');
+        return view('products.category-trash')->with($data);
+  
+    } 
     public function addProductscategory()
     {
         return view('products.add_category');
@@ -42,12 +57,21 @@ class ProductController extends Controller
        ->with('all_category',$all_category); 
 
     } 
-
-     public function delete_category($id){
+ 
+      public function delete_category($id){
         DB::table('categories')->where('id',$id)->delete();
         return Redirect::back();
 
+    }   
+    public function trash_category($id)
+    {
+        $all_category = Category::find($id);
+        if(!is_null($all_category)){
+            $all_category->delete();
+        }
+        return redirect('products.category-trash');
     } 
+
 
     public function editProductscategory( $id)
     {
@@ -70,7 +94,9 @@ class ProductController extends Controller
 
         Toastr::success('category Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         
-        return Redirect::back();
+        $all_category=DB::table('categories')->get(); 
+        return view('products.category')
+        ->with('all_category',$all_category);
 
     }
 
@@ -86,14 +112,14 @@ class ProductController extends Controller
         return view('products.index', compact('products'));      
     }
 
-
+/* 
     public function create()
 
     {
         $categories = Category::all();
         return view('products.create', compact('categories'));
 
-    }
+    } */
 
     public function exportproducts()
 

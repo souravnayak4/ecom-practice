@@ -23,13 +23,13 @@ class FrontendController extends Controller
 
     {
 
-        $products = Product::latest()->paginate(5);
+        $products = Product::where('status','',0)->get();
 
-    
 
-        return view('frontend.pages.shop',compact('products'))
 
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('frontend.pages.shop', compact('products'));
+
+           
 
     }
 
