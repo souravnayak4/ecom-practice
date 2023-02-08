@@ -29,8 +29,11 @@
              <h1>update subCategory</h1>
              <div class="form-group">
                 <label>sub category</label>
-                <input class="form-control" type="text" name="name" value="{{$subcategory->subcategory_name}}">
-              <input type="hidden" name="id" value="{{$subcategory->subcategory_id}}">
+                <div class="form-group">
+                  <label>Clinic Name</label>
+                  <input class="form-control" type="text" name="subcategory_name" value="{{$subcategory->subcategory_name}}">
+                <input type="hidden" name="subcategory_id" value="{{$subcategory->subcategory_id}}">
+                </div>
               </div>
              <div>
              <td>          

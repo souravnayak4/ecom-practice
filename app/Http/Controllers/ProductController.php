@@ -36,7 +36,10 @@ class ProductController extends Controller
             'status' => $request->status
             
         ]); 
-        return view('products.add_category');  
+         Toastr::success('category add Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+        $all_category=DB::table('categories')->get(); 
+       return view('products.category')
+       ->with('all_category',$all_category); 
 
     } 
 

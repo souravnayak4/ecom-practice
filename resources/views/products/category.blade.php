@@ -60,7 +60,7 @@
                                     @if( $category->status==0 )
                                        <h5 style="color:green;">  Active</h5>
                                     @elseif( $category->status==1 )
-                                    <h5style="color:green;">  Dactive</h6>
+                                    <h5 style="color:red;"> Dactive</h5>
                                     @endif
 
                                 </td>

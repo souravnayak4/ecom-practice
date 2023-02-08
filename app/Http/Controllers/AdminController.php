@@ -46,7 +46,9 @@ class AdminController extends Controller
             
         ]);
         Toastr::success(' save subcategory  Successfully', 'Info', ["positionClass" => "toast-top-center"]);
-        return Redirect::back();
+        $all_subcategory=DB::table('tbl_subcategory')->get(); 
+        return view('admin.pages.subcategory')
+        ->with('all_subcategory',$all_subcategory);
  
     }
 
@@ -57,7 +59,7 @@ class AdminController extends Controller
 
     }
     
-    public function editProductsubscategory( $subcategory_id)
+    public function editProductssubcategory( $subcategory_id)
     {
 
         $subcategory=DB::table('tbl_subcategory')->where('subcategory_id',$subcategory_id)->first();
@@ -72,12 +74,14 @@ class AdminController extends Controller
 
         
         DB::table('tbl_subcategory')
-              ->where('id', $request->subcategory_id)
-              ->update(['name' => $request->subcategory_name]);
+              ->where('subcategory_id', $request->subcategory_id)
+              ->update(['subcategory_name' => $request->subcategory_name]);
 
         Toastr::success('subcategory Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         
-        return Redirect::back();
+        $all_subcategory=DB::table('tbl_subcategory')->get(); 
+        return view('admin.pages.subcategory')
+        ->with('all_subcategory',$all_subcategory);
 
     }
     
