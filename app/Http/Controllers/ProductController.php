@@ -21,14 +21,7 @@ class ProductController extends Controller
        ->with('all_category',$all_category);
   
     } 
- /*    public function category()
-    {
-        $all_category = Category::all();
-        $data = compact('all_category');
-        return view('products.category')->with($data);
-
-  
-    } */
+ 
 
      public function trash()
     {
@@ -108,18 +101,48 @@ class ProductController extends Controller
     public function index()
 
     {
+        $products = Product::with(['category','subcategory'])
+        ->get();
+        
+        
+       
+      
+        return view('products.index', compact('products')); 
+            
+    }  
+/*     {
         $products = Product::with('category')->get();
-        return view('products.index', compact('products'));      
-    }
+        $categories = Category::with('products')->get();
+        
+        return view('products.index', compact('products' ));
+        
+    } */
 
-/* 
+
+
+  
+ 
     public function create()
 
-    {
-        $categories = Category::all();
-        return view('products.create', compact('categories'));
 
-    } */
+    {
+    
+                      $categories=DB::table('categories')->get();
+                      $tbl_subcategory=DB::table('tbl_subcategory')->get();
+                      $product=view('products.create')
+                              ->with('categories',$categories)
+                              ->with('tbl_subcategory',$tbl_subcategory);
+                      return view('admin.master')
+                      ->with('product',$product);
+
+                      
+    }
+
+   
+
+
+
+
 
     public function exportproducts()
 
@@ -145,18 +168,7 @@ class ProductController extends Controller
 
                         ->with('success','Product created successfully.');
     }
-    /**
-
-     * Store a newly created resource in storage.
-
-     *
-
-     * @param  \Illuminate\Http\Request  $request
-
-     * @return \Illuminate\Http\Response
-
-     */
-
+   
     public function store(Request $request)
 
     {
@@ -167,6 +179,8 @@ class ProductController extends Controller
             'detail' => 'required',
             'price' => 'required',
             'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'status' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
@@ -202,17 +216,7 @@ class ProductController extends Controller
 
      
 
-    /**
-
-     * Display the specified resource.
-
-     *
-
-     * @param  \App\Product  $product
-
-     * @return \Illuminate\Http\Response
-
-     */
+  
 
     public function show(Product $product)
 

@@ -64,16 +64,13 @@
     <table class="table table-bordered">
 
         <tr>
-
-            <th>No</th>
-
+            <th>catagory </th>
+            <th>subcatagory </th>
             <th>Name</th>
-
             <th>Details</th>
             <th>Price</th>
-
             <th>Image</th>
-            <th>catagory </th>
+            <th>status</th>
             <th width="280px">Action</th>
 
         </tr>
@@ -81,17 +78,25 @@
         @foreach ($products as $product)
 
         <tr>
-
-            <td>{{$product->id}}</td>
+            <td>{{ $product->category->name }}</td>
+             <td>{{ $product->category->subcategory_name }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->detail }}</td>
             <td>{{ $product->price }}</td>
             <td><img src="/image/{{ $product->image }}" width="100px"></td>
-            <td>{{ $product->category->name }}</td>
+            <td>
+                @if( $product->status==0 )
+                   <h5 style="color:green;">  Active</h5>
+                @elseif( $product->status==1 )
+                <h5 style="color:red;"> Dactive</h5>
+                @endif
+
+            </td>
+            
             <td>
 
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>    
+                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">View</a>    
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
                     @csrf
                     @method('DELETE')

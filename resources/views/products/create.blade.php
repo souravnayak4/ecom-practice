@@ -99,15 +99,7 @@
             </div>
         </div>
        
-{{--         <div class="form-group">
-            <label>category</label>
-            <select class="form-control" name="category_id">
-                <option value="">Select category </option>             
-                @foreach($categories as $v_category)
-                    <option value="{{$v_category->id}}">{{$v_category->name}}</option>
-                    @endforeach              
-            </select>
-        </div> --}}
+
 
         <div class="form-group">
             <label>category</label>
@@ -122,18 +114,24 @@
             </select>
         </div>
 
+        
+        <div class="form-group">
+            <label>subcategory</label>
+            <select class="form-control" name="subcategory_id">
+                <option value="">Select category </option>
+                @foreach($tbl_subcategory as $subcategory)             
+                @if( $subcategory->status==0 )
+                    <option value="{{$subcategory->subcategory_id}}">{{$subcategory->subcategory_name}}</option>
+                    @elseif( $subcategory->status==1 )
+                    @endif
+                    @endforeach 
+            </select>
+        </div> 
+
 
  
  
-{{--         <div class="form-group">
-            <label>category</label>
-            <select class="form-control" name="subcategory_id">
-                <option value="">Select category </option>             
-                @foreach($all_subcategory as $v_category)
-                    <option value="{{$v_category->subcategory_id}}">{{$v_category->subcategory_name}}</option>
-                    @endforeach              
-            </select>
-        </div> --}}
+
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -146,8 +144,14 @@
             </div>
 
         </div>
-       
-
+        <div class="col-xs-12 col-sm-12 col-md-12">
+        <td>          
+            <select name="status" class="form-control">                  
+              <option value="0">Enable</option>
+              <option value="1">Disable</option>           
+            </select>
+        </td>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
                 <button type="submit" class="btn btn-primary">Submit</button>

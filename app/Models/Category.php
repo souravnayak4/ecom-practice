@@ -9,9 +9,12 @@ class Category extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['name'];
+    protected $fillable = ['id','name'];
     public function products()
     {
-        return $this->hashMay(Product::class);
+        return $this->hashMay(Product::class, 'category_id', 'id');
     }
+
+   
+ 
 }

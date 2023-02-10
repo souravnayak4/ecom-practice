@@ -1,9 +1,7 @@
 <?php
-
-  
-
 namespace App\Models;
 use App\Models\Category;
+use App\Models\Subcategory;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,14 +19,22 @@ class Product extends Model
 
     protected $fillable = [
 
-        'name', 'detail','price', 'image','category_id'];
+        'name', 'detail','price', 'image','subcategory_id','category_id','status'];
 
         public function category()
         {
 
-        return $this->belongsTo(Category::class,'category_id');
+        return $this->belongsTo(Category::class);
 
         }
+        public function subcategory()
+        {
+
+        return $this->belongsTo(Subcategory::class);
+
+        }
+      
+        
 
     
 
