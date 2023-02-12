@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
@@ -100,27 +101,16 @@ class ProductController extends Controller
    
     public function index()
 
-    {
-        $products = Product::with(['category','subcategory'])
+    {     
+        $products = Product::with('category' )
         ->get();
-        
-        
-       
-      
+        $products = Product::with('subcategory')->get();
         return view('products.index', compact('products')); 
+      
+
             
-    }  
-/*     {
-        $products = Product::with('category')->get();
-        $categories = Category::with('products')->get();
-        
-        return view('products.index', compact('products' ));
-        
-    } */
+    }   
 
-
-
-  
  
     public function create()
 
@@ -175,7 +165,7 @@ class ProductController extends Controller
 
         $request->validate([
 
-            'name' => 'required',
+            'product_name' => 'required',
             'detail' => 'required',
             'price' => 'required',
             'category_id' => 'required',
@@ -263,10 +253,10 @@ class ProductController extends Controller
 
         $request->validate([
 
-            'name' => 'required',
+            'product_name' => 'required',
             'detail' => 'required',
-            'price' => 'required'
-            
+            'price' => 'required',
+            'status' => 'required'
            
 
         ]);

@@ -28,7 +28,7 @@
           <div class="ms-auto"><a href="/all-category" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>back </a></div>
              <h1>update Category</h1>
              <div class="form-group">
-                <label>Clinic Name</label>
+                <label>update Category</label>
                 <input class="form-control" type="text" name="name" value="{{$category->name}}">
               <input type="hidden" name="id" value="{{$category->id}}">
               </div>

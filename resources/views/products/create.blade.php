@@ -79,7 +79,7 @@
 
                 <strong>Name:</strong>
 
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="product_name" class="form-control" placeholder="Name">
 
             </div>
 

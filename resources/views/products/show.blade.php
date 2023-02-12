@@ -51,7 +51,7 @@
 
                 <strong>Name:</strong>
 
-                {{ $product->name }}
+                {{ $product->product_name }}
 
             </div>
 

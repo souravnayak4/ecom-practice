@@ -193,7 +193,7 @@
                                     <li class="pagination__list">
                                         <a href="shop.html" class="pagination__item--arrow  link ">
                                             <svg xmlns="http://www.w3.org/2000/svg"  width="22.51" height="20.443" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/></svg>
-                                            <span class="visually-hidden">{{-- {!! $products->links() !!} --}}</span>
+                                            <span class="visually-hidden">{{-- {!! $products->links() !!} --}} </span>
                                         </a>
                                     <li>
                                     <li class="pagination__list"><span class="pagination__item pagination__item--current">1</span></li>

@@ -76,7 +76,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
+                    <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control" placeholder="Name">
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
 
                     <input type="file" name="image" class="form-control" placeholder="image">
 
-                   
+                    <td><img src="/image/{{ $product->image }}" width="100px"></td>
 
                 </div>
 
@@ -110,12 +110,27 @@
             <div class="form-group">
                 <label>category</label>
                 <select class="form-control" name="category_id">
-                    <option value="">Select category </option>             
-                   
-                        <option value={{ $product->category->id }}><td>{{ $product->category->name }}</td></option>
-                                    
-                </select>
+                    <option value="">Select category </option>                               
+                        <option value={{ $product->category->category_id }}><td>{{ $product->category->name }}</td></option>                                   
+                        <input type="hidden" name="category_id" value="{{$product->category_id}}">
+                    </select>
             </div>
+
+           {{--  <div class="form-group">
+                <label>category</label>
+                <select class="form-control" name="category_id">
+                    <option value="">Select category </option>                               
+                        <option value={{ $product->subcategory->subcategory_id }}><td>{{ $product->subcategory->subcategory_name }}</td></option>                                   
+                </select>
+            </div>--}}
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <td>          
+                    <select name="status" class="form-control">                  
+                      <option value="0">Enable</option>
+                      <option value="1">Disable</option>           
+                    </select>
+                </td>
+                </div> 
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

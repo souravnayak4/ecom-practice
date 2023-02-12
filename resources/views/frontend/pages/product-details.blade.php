@@ -31,7 +31,7 @@
                     <div class="col">
                         <div class="product__details--info">
                             <form action="#">
-                                <h2 class="product__details--info__title mb-15"> {{ $details->name }}</h2>
+                                <h2 class="product__details--info__title mb-15"> {{ $details->product_name }}</h2>
                                 <div class="product__details--info__price mb-10">
                                     <span class="current__price">${{ $details->price }}</span>
                                     
