@@ -60,7 +60,7 @@
 						</div>
 						<div class="menu-title">SubCategory</div>
 					</a>
-					 <a class="" href="products">
+					 <a class="" href="{{ route('products.index') }}">
 						<div class="parent-icon"><i class="bx bx-repeat"></i>
 						</div>
 						<div class="menu-title">add_products and view</div>

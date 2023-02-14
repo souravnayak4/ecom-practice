@@ -67,12 +67,9 @@
             <th>catagory </th>
             <th>subcatagory </th>
             <th>Name</th>
-            <th>Details</th>
-            <th>Price</th>
-            <th>Image</th>
+            <th>Image</th>   
             <th>status</th>
             <th width="280px">Action</th>
-
         </tr>
 
         @foreach ($products as $product)
@@ -83,8 +80,8 @@
             
 
             <td>{{ $product->product_name }}</td>
-            <td>{{ $product->detail }}</td>
-            <td>{{ $product->price }}</td>
+            
+
             <td><img src="/image/{{ $product->image }}" width="100px"></td>
             <td>
                 @if( $product->status==0 )
@@ -92,7 +89,6 @@
                 @elseif( $product->status==1 )
                 <h5 style="color:red;"> Dactive</h5>
                 @endif
-
             </td>
             
             <td>

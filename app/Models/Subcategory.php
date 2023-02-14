@@ -18,9 +18,6 @@ class Subcategory extends Model
     {
         return $this->hashMay(Product::class, 'subcategory_id', 'subcategory_id');
     }
-
-   
-
   
 }
 

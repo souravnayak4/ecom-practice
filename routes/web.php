@@ -104,7 +104,7 @@ Route::post('/store-post-registration', [AuthController::class, 'postRegistratio
 /* Route::group(['middleware' => ["auth:customer", "verified"]], function () { */    
 Route::get('/my-account', [FrontendController::class, 'myaccount']);
 Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
-Route::put('/update-my-account', [AuthController::class, 'myaccountupdate']);   
+Route::put('/update-my-account/{id}', [AuthController::class, 'myaccountupdate']);   
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 /* }); *//*
  Route::get('/frontend.dashboard', [AuthController::class, 'home']);  */
@@ -115,4 +115,11 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/wishlist', [FrontendController::class, 'wishlist']);
  Route::get('/cart', [FrontendController::class, 'cart']);
  Route::get('/checkout', [FrontendController::class, 'checkout']);
- Route::post('add_to_cart', [FrontendController::class, 'addToCart']);
+ Route::post('/add_to_cart', [FrontendController::class, 'addToCart']);
+
+ Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+ Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+ Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
+ Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
+ 
+ 

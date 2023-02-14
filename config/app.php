@@ -197,6 +197,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         /* Jorenvh\Share\Providers\ShareServiceProvider::class, */
+        Darryldecode\Cart\CartServiceProvider::class,
+
 
     ],
 
@@ -216,6 +218,7 @@ return [
         /* 'Share' => Jorenvh\Share\ShareFacade::class, */
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
     ])->toArray(),
 
 ];

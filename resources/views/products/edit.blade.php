@@ -111,10 +111,19 @@
                 <label>category</label>
                 <select class="form-control" name="category_id">
                     <option value="">Select category </option>                               
-                        <option value={{ $product->category->category_id }}><td>{{ $product->category->name }}</td></option>                                   
+                        <option value={{ $product->category->id }}><td>{{ $product->category->name }}</td></option>                                   
                         <input type="hidden" name="category_id" value="{{$product->category_id}}">
                     </select>
             </div>
+
+            <div class="form-group">
+                <label>subcategory</label>
+                <select class="form-control" name="subcategory_id">
+                    <option value="">Select subcategory </option>                               
+                        <option value={{ $product->subcategory->subcategory_id }}><td>{{ $product->subcategory->subcategory_name }}</td></option>                                   
+                        <input type="hidden" name="subcategory_subcategory_id" value="{{$product->subcategory_id}}">
+                    </select>
+            </div> 
 
            {{--  <div class="form-group">
                 <label>category</label>

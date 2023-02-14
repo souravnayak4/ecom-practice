@@ -28,12 +28,13 @@
         <!-- my account section start -->
         <section class="my__account--section section--padding">
             <div class="container">
-                <p class="account__welcome--text">Hello, user!</p>
+                <p class="account__welcome--text">Hello, {{Auth::guard('customer')->user( )->name }}!</p>
                 <div class="my__account--section__inner border-radius-10 d-flex">
                     <div class="account__left--sidebar">
                         <h2 class="account__content--title h3 mb-20">My Profile</h2>
                         <ul class="account__menu">
                             <li class="nav-link"><a href="/my-account">Personal Information</a></li>
+                            <li class="nav-link"><a href="{{ route('cart') }}" >Cart Item</a></li>
                             <li class="nav-link"><a href="wishlist.html">Wishlist</a></li>
                             <li class="nav-link"><a href="{{ route('signout') }}">Log Out</a></li>
                             
@@ -46,19 +47,18 @@
                                 <table class="account__table">
                                     <thead class="account__table--header">
                                         <tr class="account__table--header__child">
-                                            <th class="account__table--header__child--items">Name</th>
-                                            <th class="account__table--header__child--items">address</th>
-                                            <th class="account__table--header__child--items">Mobile Number</th>
-                                            <th class="account__table--header__child--items">Email Address</th>
+                                            <th class="account__table--header__child--items">Address</th>
+                                            <th class="account__table--header__child--items">Mobile</th>
+                                            <th class="account__table--header__child--items">Email</th>
                                             	 	 	 	
                                         </tr>
                                     </thead>
                                     <tbody class="account__table--body mobile__none">
                                         <tr class="account__table--body__child">
-                                            <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->name }}</td>
                                             <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->address }}</td>
                                             <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->contact }}</td>
                                             <td class="account__table--body__child--items">{{Auth::guard('customer')->user( )->email }}</td>
+                                            
                                             <td class="account__table--body__child--items">
                                                 <a class="btn btn-primary" href="/update-my-account">up-date</a>
                                            </td>

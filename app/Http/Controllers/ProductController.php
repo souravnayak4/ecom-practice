@@ -100,65 +100,26 @@ class ProductController extends Controller
 
    
     public function index()
-
     {     
         $products = Product::with('category' )
         ->get();
         $products = Product::with('subcategory')->get();
-        return view('products.index', compact('products')); 
-      
-
-            
+        return view('products.index', compact('products'));          
     }   
 
  
     public function create()
-
-
     {
     
-                      $categories=DB::table('categories')->get();
-                      $tbl_subcategory=DB::table('tbl_subcategory')->get();
-                      $product=view('products.create')
-                              ->with('categories',$categories)
-                              ->with('tbl_subcategory',$tbl_subcategory);
-                      return view('admin.master')
-                      ->with('product',$product);
-
-                      
+       $categories=DB::table('categories')->get();
+       $tbl_subcategory=DB::table('tbl_subcategory')->get();
+       $product=view('products.create')
+       ->with('categories',$categories)
+       ->with('tbl_subcategory',$tbl_subcategory);
+        return view('admin.master')
+        ->with('product',$product);                
     }
 
-   
-
-
-
-
-
-    public function exportproducts()
-
-    {
-
-        return Excel::Download(new ProductsExport,'Products.xlsx' );
-
-    }
-
-
-    public function importsproducts()
-    {
-        return view('products.excel');
-    }
-    
-    public function productsexcel(Request $request)
-
-    {
-
-        //validate
-        Excel::import(new ProductsImport, $request->file('file'));
-        return redirect()->route('products.index')
-
-                        ->with('success','Product created successfully.');
-    }
-   
     public function store(Request $request)
 
     {
@@ -176,9 +137,6 @@ class ProductController extends Controller
         ]);
 
         $input = $request->all();
-       
-
-
         if ($image = $request->file('image')) {
 
             $destinationPath = 'image/';
@@ -190,127 +148,48 @@ class ProductController extends Controller
             $input['image'] = "$profileImage";
 
         }
-
-        
-        
-
         Product::create($input);
-
-
-
         return redirect()->route('products.index');
-
-                       
 
     }
 
-     
-
-  
 
     public function show(Product $product)
-
     {
         return view('products.show',compact('product'));
     }
 
-    /**
-
-     * Show the form for editing the specified resource.
-
-     *
-
-     * @param  \App\Product  $product
-
-     * @return \Illuminate\Http\Response
-
-     */
 
     public function edit(Product $product)
     {
+        
         return view('products.edit',compact('product'));
     }
 
-    
-
-    /**
-
-     * Update the specified resource in storage.
-
-     *
-
-     * @param  \Illuminate\Http\Request  $request
-
-     * @param  \App\Product  $product
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function update(Request $request, Product $product)
+    public function updat(Request $request, Product $product)
 
     {
-
         $request->validate([
-
             'product_name' => 'required',
             'detail' => 'required',
             'price' => 'required',
             'status' => 'required'
-           
-
         ]);
-
-  
-
         $input = $request->all();
-
-  
-
         if ($image = $request->file('image')) {
-
             $destinationPath = 'image/';
-
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-
             $image->move($destinationPath, $profileImage);
-
             $input['image'] = "$profileImage";
-
         }else{
-
             unset($input['image']);
-
         }
-
-          
-
         $product->update($input);
-
-       
-
-
-
+        Toastr::success('Product Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         return redirect()->route('products.index');
 
-
     }
-
-  
-
-    /**
-
-     * Remove the specified resource from storage.
-
-     *
-
-     * @param  \App\Product  $product
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function destroy(Product $product)
+        public function destroy(Product $product)
 
     {
         $product->delete();
@@ -320,6 +199,83 @@ class ProductController extends Controller
 
 
 
+    public function exportproducts()
+    {
+        return Excel::Download(new ProductsExport,'Products.xlsx' );
+    }
+    public function importsproducts()
+    {
+        return view('products.excel');
+    }
+    public function productsexcel(Request $request)
+    {
+        //validate
+        Excel::import(new ProductsImport, $request->file('file'));
+        return redirect()->route('products.index')
+        ->with('success','Product created successfully.');
+    }
+   
 
+
+
+    public function cart()
+    {
+        return view('frontend.pages.cart');
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+          
+        $cart = session()->get('cart', []);
+  
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+          
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function update(Request $request)
+    {
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function remove($id){
+   
+        Product::find($id)->delete($id);
+      
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
    
 }

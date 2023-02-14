@@ -21,6 +21,15 @@
   <!-- Custom Style CSS -->
   <link rel="stylesheet" href="{{asset('frontend')}}/css/style.css">
   <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -35,6 +44,7 @@
                     <div class="header__shipping">
                         <p class="header__shipping--text text-white">Free shipping for orders over $59 !</p>
                     </div>
+                    
                     <div class="language__currency d-none d-lg-block">
                         <ul class="d-flex align-items-center">
                             <li class="header__shipping--text text-white"><img class="header__shipping--text__icon" src="{{asset('frontend')}}/img/icon/bus.png" alt="bus-icon"> Track Your Order</li>
@@ -55,6 +65,7 @@
                             <span class="visually-hidden">Menu Open</span>
                         </a>
                     </div>
+                    
                     <div class="main__logo">
                         <h1 class="main__logo--title"><a class="main__logo--link" href="index-2.html"><img class="main__logo--img" src="{{asset('frontend')}}/img/logo/nav-log2.png" alt="logo-img"></a></h1>
                     </div>
@@ -122,18 +133,47 @@
                                 </a>
                             </li>
                             <li class="header__account--items header__account2--items">
-                                <a class="header__account--btn minicart__open--btn" href="javascript:void(0)" data-offcanvas>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="26.51" height="23.443" viewBox="0 0 14.706 13.534">
-                                        <g  transform="translate(0 0)">
-                                          <g >
-                                            <path  data-name="Path 16787" d="M4.738,472.271h7.814a.434.434,0,0,0,.414-.328l1.723-6.316a.466.466,0,0,0-.071-.4.424.424,0,0,0-.344-.179H3.745L3.437,463.6a.435.435,0,0,0-.421-.353H.431a.451.451,0,0,0,0,.9h2.24c.054.257,1.474,6.946,1.555,7.33a1.36,1.36,0,0,0-.779,1.242,1.326,1.326,0,0,0,1.293,1.354h7.812a.452.452,0,0,0,0-.9H4.74a.451.451,0,0,1,0-.9Zm8.966-6.317-1.477,5.414H5.085l-1.149-5.414Z" transform="translate(0 -463.248)" fill="currentColor"/>
-                                            <path  data-name="Path 16788" d="M5.5,478.8a1.294,1.294,0,1,0,1.293-1.353A1.325,1.325,0,0,0,5.5,478.8Zm1.293-.451a.452.452,0,1,1-.431.451A.442.442,0,0,1,6.793,478.352Z" transform="translate(-1.191 -466.622)" fill="currentColor"/>
-                                            <path  data-name="Path 16789" d="M13.273,478.8a1.294,1.294,0,1,0,1.293-1.353A1.325,1.325,0,0,0,13.273,478.8Zm1.293-.451a.452.452,0,1,1-.431.451A.442.442,0,0,1,14.566,478.352Z" transform="translate(-2.875 -466.622)" fill="currentColor"/>
-                                          </g>
-                                        </g>
-                                    </svg>
-                                    <span class="items__count style2">02</span> 
-                                </a>
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-12 main-section">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-info" data-toggle="dropdown">
+                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <div class="row total-header-section">
+                                                    <div class="col-lg-6 col-sm-6 col-6">
+                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                                                    </div>
+                                                    @php $total = 0 @endphp
+                                                    @foreach((array) session('cart') as $id => $details)
+                                                        @php $total += $details['price'] * $details['quantity'] @endphp
+                                                    @endforeach
+                                                    <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
+                                                        <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                                    </div>
+                                                </div>
+                                                @if(session('cart'))
+                                                    @foreach(session('cart') as $id => $details)
+                                                        <div class="row cart-detail">
+                                                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                                <img src="/image/{{ $details['image'] }}" />
+                                                            </div>
+                                                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                                                <p>{{ $details['name'] }}</p>
+                                                                <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                                                        <a href="{{ route('cart') }}" class="btn btn-primary btn-block">View all</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -350,6 +390,13 @@
             </button>
         </div>
         <!-- End serch box area -->
+
+        @if(session('success'))
+        <div class="alert alert-success">
+          {{ session('success') }}
+        </div> 
+    @endif
+  
     </header>
     <!-- End header area -->
 

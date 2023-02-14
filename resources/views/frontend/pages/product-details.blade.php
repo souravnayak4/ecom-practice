@@ -13,14 +13,14 @@
                                     <div class="swiper-slide">
                                         <div class="product__media--preview__items">
                                             <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{asset('image/' . $details->image )}}"><img class="product__media--preview__items--img" src="{{asset('image/' . $details->image )}}" alt="product-media-img"></a>
-                                            <div class="product__media--view__icon"> 
+                                            <div class="product__media--view__icon">                    
                                                 <a class="product__media--view__icon--link glightbox"  data-gallery="product-media-preview">
                                                     <svg class="product__media--view__icon--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path></svg>
                                                 </a>
                                             </div> 
                                         </div>
                                     </div>
-
+                                   
                                     
                                    
                                 </div>
@@ -89,7 +89,7 @@
                                             </label>
                                             <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
                                         </div>
-                                        <button class="quickview__cart--btn primary__btn" type="submit">Add To Cart</button>  
+                                        <p class="btn-holder"><a href="{{ route('add.to.cart', $details->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>  
                                     </div>
                                     <div class="product__variant--list mb-15">
                                         <a class="variant__wishlist--icon mb-15" href="wishlist.html" title="Add to wishlist">
@@ -99,7 +99,7 @@
                                         <button class="variant__buy--now__btn primary__btn" type="submit">Buy it now</button>
                                     </div>
                                     <div class="product__details--info__meta">
-                                        <p class="product__details--info__meta--list"><strong>Category:</strong>  <span>{{ $details->id }}</span> </p>
+                                        <p class="product__details--info__meta--list"><strong>Category:</strong>  <span>{{ $details->category->name }}</span> </p>
                                         
                                     </div>
                                 </div>
