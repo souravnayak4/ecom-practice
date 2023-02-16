@@ -89,7 +89,7 @@
                                             </label>
                                             <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
                                         </div>
-                                        <p class="btn-holder"><a href="{{ route('add.to.cart', $details->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>  
+                                         
                                     </div>
                                     <div class="product__variant--list mb-15">
                                         <a class="variant__wishlist--icon mb-15" href="wishlist.html" title="Add to wishlist">

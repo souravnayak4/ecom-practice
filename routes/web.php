@@ -57,6 +57,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/orders', [AdminController::class, 'orders']);
 
 Route::get('/subcategory', [AdminController::class, 'subcategory']);
+Route::get('/subcategory-trash', [AdminController::class, 'trash']);
 Route::get('/add-subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/save-subcategory', [AdminController::class, 'save_subcategory']);
 Route::get('/delete-subcategory/{id}', [AdminController::class, 'delete_subcategory']);
@@ -114,12 +115,6 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
  Route::get('/wishlist', [FrontendController::class, 'wishlist']);
  Route::get('/cart', [FrontendController::class, 'cart']);
- Route::get('/checkout', [FrontendController::class, 'checkout']);
- Route::post('/add_to_cart', [FrontendController::class, 'addToCart']);
 
- Route::get('cart', [ProductController::class, 'cart'])->name('cart');
- Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
- Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
- Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
  
  

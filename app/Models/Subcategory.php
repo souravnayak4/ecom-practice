@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subcategory extends Model
 {
     use HasFactory;
-    
+   
     protected $table = 'tbl_subcategory';
     protected $primaryKey = 'subcategory_id';
    

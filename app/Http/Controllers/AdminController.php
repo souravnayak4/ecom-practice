@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\product;
 use App\Models\material;
+use App\Models\Subcategory;
 use DB;
 use Toastr;
 use Redirect;
@@ -51,6 +52,14 @@ class AdminController extends Controller
         ->with('all_subcategory',$all_subcategory);
  
     }
+
+    public function trash()
+    {
+        $all_subcategory = Subcategory::onlyTrashed()->get();
+        $data = compact('all_subcategory');
+        return view('products.category-trash')->with($data);
+  
+    } 
 
     public function delete_subcategory($id){
         DB::table('tbl_subcategory')->where('subcategory_id',$id)->delete();

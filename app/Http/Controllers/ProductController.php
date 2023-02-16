@@ -166,7 +166,7 @@ class ProductController extends Controller
         return view('products.edit',compact('product'));
     }
 
-    public function updat(Request $request, Product $product)
+    public function update(Request $request, Product $product)
 
     {
         $request->validate([
@@ -228,54 +228,6 @@ class ProductController extends Controller
      *
      * @return response()
      */
-    public function addToCart($id)
-    {
-        $product = Product::findOrFail($id);
-          
-        $cart = session()->get('cart', []);
-  
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
-            ];
-        }
-          
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function update(Request $request)
-    {
-        if($request->id && $request->quantity){
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
-        }
-    }
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function remove($id){
    
-        Product::find($id)->delete($id);
-      
-        return response()->json([
-            'success' => 'Record deleted successfully!'
-        ]);
-    }
    
 }
