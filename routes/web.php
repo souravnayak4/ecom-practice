@@ -114,7 +114,8 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/shop', [FrontendController::class, 'shop']);
  Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
  Route::get('/wishlist', [FrontendController::class, 'wishlist']);
- Route::get('/cart', [FrontendController::class, 'cart']);
-
+ Route::post('/add_cart/{id}', [FrontendController::class, 'add_cart']);
+ Route::get('/show_cart', [FrontendController::class, 'show_cart']);
+ Route::get('/search', [FrontendController::class, 'searchdata']);
  
  

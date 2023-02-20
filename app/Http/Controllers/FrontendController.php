@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use DB;
 use Toastr;
 use Redirect;
+
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Hash;
@@ -26,24 +28,33 @@ class FrontendController extends Controller
     public function shop()
 
     {
-
         $products = Product::where('status','',0)->get();
-
-
-
         return view('frontend.pages.shop', compact('products'));
-
-           
-
     }
+    public function searchdata(Request $request)
 
+    {
+       
+       $searchText=$request->search;
+       $products=Product::where('product_name','LIKE',"%$searchText%")
+       ->orWhere('detail','LIKE',"%$searchText%")
+       ->get();
+       return view('frontend.pages.shop', compact('products'));
+    }
+    public function show_cart()
+    {
+        $id=Auth::guard('customer')->user()->id;
+        $cart=cart::where('customer_id','=',$id)->get();
+       /* $cart =Auth::guard('customer')->user()->$id; */
+        return view('frontend.pages.cart', compact('cart'));
+    }
+   
     public function  product_details($id)
     {
 
        
 
-        $details = Product::with('category' )->where('id',$id)->first()
-        ;
+        $details = Product::with('category' )->where('id',$id)->first();
         
         return view('frontend.pages.product-details', compact('details')); 
        
@@ -55,10 +66,39 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.wishlist');
     }
-    public function cart()
+    public function add_cart(Request $request,$id)
     {
-        return view('frontend.pages.cart');
+        if(Auth::guard('customer')->check())
+        {
+            $customer=Auth::guard('customer')->user();
+            $products=Product::find($id);
+             $cart= new cart;
+            $cart->name=$customer->name; 
+            $cart->email=$customer->email; 
+            $cart->contact=$customer->contact; 
+            $cart->address=$customer->address; 
+            $cart->customer_id=$customer->id; 
+
+            $cart->product_name=$products->product_name;
+            $cart->price=$products->price; 
+            $cart->image=$products->image;
+            $cart->product_id=$products->id;
+
+            $cart->quantity=$request->quantity;
+            
+            $cart->save();
+            return redirect()->back();
+            
+            
+        }
+        else
+        {
+             return redirect('/new-user-login');
+        }
     }
+
+  /*   Auth::guard('admin')->user()->name;
+    {{Auth::guard('customer')->user( )->name }} */
     
     public function myaccount()
     {
