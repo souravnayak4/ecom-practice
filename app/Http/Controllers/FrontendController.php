@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -31,6 +32,16 @@ class FrontendController extends Controller
         $products = Product::where('status','',0)->get();
         return view('frontend.pages.shop', compact('products'));
     }
+    public function  product_details($id)
+    {
+
+       
+
+        $details = Product::with('category' )->where('id',$id)->first();
+        
+        return view('frontend.pages.product-details', compact('details')); 
+       
+    }
     public function searchdata(Request $request)
 
     {
@@ -45,27 +56,14 @@ class FrontendController extends Controller
     {
         $id=Auth::guard('customer')->user()->id;
         $cart=cart::where('customer_id','=',$id)->get();
-       /* $cart =Auth::guard('customer')->user()->$id; */
         return view('frontend.pages.cart', compact('cart'));
     }
    
-    public function  product_details($id)
-    {
 
-       
-
-        $details = Product::with('category' )->where('id',$id)->first();
-        
-        return view('frontend.pages.product-details', compact('details')); 
-       
-    }
 
  
 
-    public function wishlist()
-    {
-        return view('frontend.pages.wishlist');
-    }
+ 
     public function add_cart(Request $request,$id)
     {
         if(Auth::guard('customer')->check())
@@ -100,6 +98,50 @@ class FrontendController extends Controller
   /*   Auth::guard('admin')->user()->name;
     {{Auth::guard('customer')->user( )->name }} */
     
+    public function remove_cart($id)
+    {
+    $cart=Cart::find($id);
+    $cart->delete();
+    return redirect()->back();
+    }
+
+    public function cash_order()
+    {
+        $id=Auth::guard('customer')->user()->id;
+        $data=Cart::where('customer_id','=',$id)->get();
+        foreach($data as $data)
+        {
+           $order=new order;
+           $order->name=$data->name;
+           $order->email=$data->email;
+           $order->contact=$data->contact;
+           $order->address=$data->address;
+           $order->customer_id=$data->customer_id;
+
+           $order->product_name=$data->product_name;
+           $order->price=$data->price;
+           $order->image=$data->image;
+           $order->quantity=$data->quantity;
+           $order->product_id=$data->product_id;
+
+           $order->payment_status='cash on deleviry';
+           $order->delivery_status='Not paid';
+           $order->save();
+           /* $cart_id=$data->id;
+           $cart=Cart::find('$cart_id');
+           $cart=delete(); */
+           
+        }
+        Toastr::success('Product Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+
+        return redirect()->back();
+
+    }
+
+    public function wishlist()
+    {
+        return view('frontend.pages.wishlist');
+    }
     public function myaccount()
     {
         return view('frontend.pages.my-account');

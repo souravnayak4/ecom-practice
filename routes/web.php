@@ -111,11 +111,12 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/frontend.dashboard', [AuthController::class, 'home']);  */
  Route::get('/index', [FrontendController::class, 'index']);
  Route::get('/about', [FrontendController::class, 'about']);
+ Route::get('/search', [FrontendController::class, 'searchdata']);
  Route::get('/shop', [FrontendController::class, 'shop']);
  Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
  Route::get('/wishlist', [FrontendController::class, 'wishlist']);
  Route::post('/add_cart/{id}', [FrontendController::class, 'add_cart']);
  Route::get('/show_cart', [FrontendController::class, 'show_cart']);
- Route::get('/search', [FrontendController::class, 'searchdata']);
- 
+ Route::get('/remove_cart/{id}', [FrontendController::class, 'remove_cart']);
+ Route::get('/cash_order', [FrontendController::class, 'cash_order']);
  

@@ -16,26 +16,31 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
+                <?php  $totalprice=0; ?>
                 @foreach($cart as $cart)
                     
                 
                 <tbody>
                   <tr>
-                    <th scope="row">{{$cart->product_name}}</th>
+                    <th >{{$cart->product_name}}</th>
                     <td>{{$cart->quantity}}</td>
                     <td>{{$cart->price}}</td>
                    <td><img src="/image/{{$cart->image}}" hight="20px" length="25px"></td>
+                   <td><a   onclick="return confirm('are you sure to delete product?')" href="{{url('/remove_cart',$cart->id)}}">Remove Product</a></td>
                   </tr>
                  
                 </tbody>
               </table>
+              <?php $totalprice=$totalprice + $cart->price ?>
               @endforeach
-                        
+              <div>
+                  <h1> Total price:  {{$totalprice}}</h1>
+              </div>
                             <div class="cart__summary--footer">
                                 <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
                                 <ul class="d-flex justify-content-between">
                                     <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                    <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.html">Check Out</a></li>
+                                    <li><a class="cart__summary--footer__btn primary__btn checkout" href="{{url('cash_order')}}">Cash on deleviry</a></li>
                                 </ul>
                             </div>
                         </div> 
