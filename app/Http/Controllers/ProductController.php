@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Exports\ProductsExport;
@@ -228,6 +229,10 @@ class ProductController extends Controller
      *
      * @return response()
      */
-   
+   public function order()
+   {
+    $order=Order::all();
+    return view('products.order',compact('order')); 
+   }
    
 }

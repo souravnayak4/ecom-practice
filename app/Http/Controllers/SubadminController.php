@@ -160,23 +160,9 @@ class SubadminController extends Controller
 
         ]);
 
-  
-
         $input = $request->all();
-
-  
-
-       
-          
-
         $subadmin->update($input);
-
-    
-
         return redirect()->route('subadmins.index');
-
-                       
-
     }
 
     /**
@@ -199,7 +185,6 @@ class SubadminController extends Controller
         return view('subadmins.show',compact('subadmin'));  
         Mail::to("$subadmin->email")->send(new MailSubadminMailable($subadmin));
         return redirect()->route('subadmins.index')
-
-                        ->with('success','subadmin details  successfully');
+       ->with('success','subadmin details  successfully');
     }
 }

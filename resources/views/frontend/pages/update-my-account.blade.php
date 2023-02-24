@@ -2,11 +2,11 @@
 @section('main_content')
 <section class="my__account--section section--padding">
     <div class="container">
-<form action="" method="POST " enctype="{{-- multipart/form-data --}}"> 
+<form action="/update-my-account" method="POST " enctype="multipart/form-data"> 
 
     @csrf
 
-    @method('PUT')
+    
 
      <div class="row">
 

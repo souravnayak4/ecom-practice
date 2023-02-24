@@ -125,7 +125,7 @@ class FrontendController extends Controller
            $order->product_id=$data->product_id;
 
            $order->payment_status='cash on deleviry';
-           $order->delivery_status='Not paid';
+           $order->delivery_status='processing';
            $order->save();
            /* $cart_id=$data->id;
            $cart=Cart::find('$cart_id');

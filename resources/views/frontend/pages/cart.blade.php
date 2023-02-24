@@ -25,7 +25,7 @@
                     <th >{{$cart->product_name}}</th>
                     <td>{{$cart->quantity}}</td>
                     <td>{{$cart->price}}</td>
-                   <td><img src="/image/{{$cart->image}}" hight="20px" length="25px"></td>
+                   <td><img src="/image/{{$cart->image}}" width="50" height="50"></td>
                    <td><a   onclick="return confirm('are you sure to delete product?')" href="{{url('/remove_cart',$cart->id)}}">Remove Product</a></td>
                   </tr>
                  

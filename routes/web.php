@@ -88,7 +88,7 @@ Route::post('/save-products-category', [ProductController::class, 'saveProductsC
 Route::get('/delete-products-category/{id}', [ProductController::class, 'delete_category']);
 Route::get('/update-product-category/{id}', [ProductController::class, 'editProductscategory'])->name('products.update-category');
 Route::post('/update-product-category', [ProductController::class, 'updateProductscategory']);
-
+Route::get('/order', [ProductController::class, 'order']);
 Route::resource('products', ProductController::class);
 Route::get('excel-products', [ProductController::class, 'exportproducts']);
 Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
@@ -102,13 +102,13 @@ Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
-/* Route::group(['middleware' => ["auth:customer", "verified"]], function () { */    
+   
 Route::get('/my-account', [FrontendController::class, 'myaccount']);
 Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
-Route::put('/update-my-account/{id}', [AuthController::class, 'myaccountupdate']);   
+Route::post('/update-my-account/{id}', [AuthController::class, 'myaccountedit']);   
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
-/* }); *//*
- Route::get('/frontend.dashboard', [AuthController::class, 'home']);  */
+
+ Route::get('/frontend.dashboard', [AuthController::class, 'home']);  
  Route::get('/index', [FrontendController::class, 'index']);
  Route::get('/about', [FrontendController::class, 'about']);
  Route::get('/search', [FrontendController::class, 'searchdata']);

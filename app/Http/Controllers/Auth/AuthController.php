@@ -114,7 +114,11 @@ class AuthController extends Controller
    
         return redirect('/new-user-login');
     }
-
+    public function myaccountedit(Customer $customer)
+    {
+        
+        return view('frontend.pages.update-my-account',compact('customer'));
+    }
     public function myaccountupdate(Request $request, customer $customer)
 
     {
@@ -126,8 +130,6 @@ class AuthController extends Controller
             'email' => 'required'
 
         ]);
-
-  
 
         $input = $request->all();
 
