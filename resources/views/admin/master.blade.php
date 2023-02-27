@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="{{asset('admin')}}/css/semi-dark.css" />
 	<link rel="stylesheet" href="{{asset('admin')}}/css/header-colors.css" />
 	<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<title>Ecom </title>
 </head>
 
@@ -67,11 +68,11 @@
 					</a>
 
 					<a href="subadmins" class="">
-						<div class="parent-icon"><i class='bx bx-cart'></i>
+						<div class="parent-icon"><i class="bx bx-user-circle"></i>
 						</div>
 						<div class="menu-title">add subadmin</div>
 					</a>
-					<a href="" class="">
+					<a href="/order" class="">
 						<div class="parent-icon"><i class='bx bx-cart'></i>
 						</div>
 						<div class="menu-title">Orders</div>

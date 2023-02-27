@@ -19,6 +19,15 @@
         </div>
         <div class="h1" style="text-align: center;">All Products</div>
         <!--end breadcrumb-->
+        <li class="header__menu--items">
+          <form action="{{ route('orders.search') }}" method="GET">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+          
+      </li>
+      &nbsp;
+      &nbsp;
 <table class="table table-hover">
     <thead>
       <tr>
@@ -32,6 +41,9 @@
         <th scope="col">Payment_status</th>
         <th scope="col">Delivery_status</th>
         <th scope="col">Image</th>
+        <th scope="col">Delevired</th>
+        <th scope="col">print </th>
+
       </tr>
     </thead>
     @foreach ($order as $order)
@@ -50,6 +62,13 @@
         <td>{{$order->payment_status}}</td>
         <td>{{$order->delivery_status}}</td>
         <td><img src="/image/{{$order->image}}" width="50" height="50"></td>
+       
+        <td> @if($order->delivery_status=="processing")<a href="{{url('delivered',$order->id)}}"  onclick="return confirm('are you sure this product is delivered !!!')"><h6 style="color:rgb(37, 188, 57);">Delivered</h6></a>
+          @else
+          <p style="color:rgb(239, 32, 32);" >sucessfully send product</p>
+          @endif
+        </td>
+        <td><a class="fa fa-print" aria-hidden="true" href="{{url('Print_Pdf',$order->id)}}" class=""></a></td>
       </tr>
       
     </tbody>

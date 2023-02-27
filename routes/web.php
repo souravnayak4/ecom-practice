@@ -23,7 +23,7 @@ use App\Http\Controllers\FrontendController;
 |
 */
 
-Auth::routes();
+/* Auth::routes(); */
   
 
 // Users Routes
@@ -89,6 +89,10 @@ Route::get('/delete-products-category/{id}', [ProductController::class, 'delete_
 Route::get('/update-product-category/{id}', [ProductController::class, 'editProductscategory'])->name('products.update-category');
 Route::post('/update-product-category', [ProductController::class, 'updateProductscategory']);
 Route::get('/order', [ProductController::class, 'order']);
+/* Route::get('/search_order', [ProductController::class, 'searchorder']); */
+Route::get('/orders/search', [ProductController::class, 'search'])->name('orders.search');
+Route::get('/delivered/{id}', [ProductController::class, 'delivered']);
+Route::get('/Print_Pdf/{id}', [ProductController::class, 'Print_Pdf']);
 Route::resource('products', ProductController::class);
 Route::get('excel-products', [ProductController::class, 'exportproducts']);
 Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
@@ -103,9 +107,10 @@ Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.pos
 Route::get('/new-user-registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/store-post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
    
-Route::get('/my-account', [FrontendController::class, 'myaccount']);
-Route::get('/update-my-account', [FrontendController::class, 'updatemyaccount']);
-Route::post('/update-my-account/{id}', [AuthController::class, 'myaccountedit']);   
+Route::get('/my-account', [AuthController::class, 'myaccount']);
+Route::get('/update-my-account', [AuthController::class, 'updatemyaccount']);
+Route::post('/update-my-account/{id}', [AuthController::class, 'myaccountedit']); 
+Route::post('/update-my-account', [AuthController::class, 'myaccountupdate'])->name('update-my-account'); 
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
  Route::get('/frontend.dashboard', [AuthController::class, 'home']);  
@@ -120,3 +125,4 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/remove_cart/{id}', [FrontendController::class, 'remove_cart']);
  Route::get('/cash_order', [FrontendController::class, 'cash_order']);
  
+ Route::get('/notification', [FrontendController::class, 'notification']);

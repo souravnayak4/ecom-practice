@@ -16,11 +16,12 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <?php  $totalprice=0; ?>
-                @foreach($cart as $cart)
+               
                     
                 
                 <tbody>
+                  <?php  $totalprice=0; ?>
+                  @foreach($cart as $cart)
                   <tr>
                     <th >{{$cart->product_name}}</th>
                     <td>{{$cart->quantity}}</td>
@@ -28,11 +29,11 @@
                    <td><img src="/image/{{$cart->image}}" width="50" height="50"></td>
                    <td><a   onclick="return confirm('are you sure to delete product?')" href="{{url('/remove_cart',$cart->id)}}">Remove Product</a></td>
                   </tr>
-                 
+                  <?php $totalprice=$totalprice + $cart->price ?>
+              @endforeach
                 </tbody>
               </table>
-              <?php $totalprice=$totalprice + $cart->price ?>
-              @endforeach
+             
               <div>
                   <h1> Total price:  {{$totalprice}}</h1>
               </div>

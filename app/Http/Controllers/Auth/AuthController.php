@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\Customer;
 use Hash;
+use DB;
 
   
 class AuthController extends Controller
@@ -114,29 +115,35 @@ class AuthController extends Controller
    
         return redirect('/new-user-login');
     }
-    public function myaccountedit(Customer $customer)
+    public function myaccount(Customer $customer)
     {
+        $customer = Customer::find(1);
+        return view('frontend.pages.my-account',compact('customer','customer'));
+    }
+  
+    public function updatemyaccount()
+    {
+        return view('frontend.pages.update-my-account');
+    }
+
+    public function myaccountupdate(Request $request,Customer $customer)
+    {
+        $name = $request->input('name');
+        $contact = $request->input('contact');
+        $address = $request->input('address');
+        $email = $request->input('email');
         
-        return view('frontend.pages.update-my-account',compact('customer'));
+
+        DB::table('customers')
+            ->where('id', '=', Auth::guard('customer')->user()->id)
+            ->update([
+                'name' => $name,
+                'email' =>$email,
+                'contact' =>$contact,
+                'address' =>$address
+            ]);
+            return view('frontend.pages.my-account',compact('customer'));
     }
-    public function myaccountupdate(Request $request, customer $customer)
 
-    {
-        $request->validate([
 
-            'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required',
-            'email' => 'required'
-
-        ]);
-
-        $input = $request->all();
-
-        $customer->update($input);
-        return redirect()->route('/my-account')
-
-                        ->with('success',' updated successfully');
-
-    }
 }

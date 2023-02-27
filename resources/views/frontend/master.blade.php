@@ -29,6 +29,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 
 </head>
 
@@ -99,16 +100,19 @@
                                      
                                 </li>
                                 <li class="header__menu--items">
-                                    <form action="{{url('search')}}" method="get">
+                                <div class="predictive__search--box__inner">
+                                    <form class="predictive__search--form"action="{{url('search')}}" method="get">
                                         @csrf
-                                        <input type="text" name="search" placeholder="search product"class="header__menu--link">
-                                        <input type="submit" value="search" class="fas fa-search">
-                                       </form>  
-                                </li>
-
+                                        <label>
+                                            <input class="predictive__search--input" placeholder="Search Here"  name="search" type="text">
+                                        </label>
+                                        <button  type="submit" value="search" class="predictive__search--button"><svg class="header__search--button__svg" xmlns="http://www.w3.org/2000/svg" width="30.51" height="25.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>  </button>
+                                    </form>
+                                </div>
                                 
-                                
+                            </li>
                             </ul>
+                           
                         </nav>
                     </div>
                     <div class="header__account header__account2">
@@ -123,8 +127,17 @@
                             <li>                      
                                 <a class="" href="/my-account">My-Account</a>
                             </li>
-                        
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <li>                      
+                                <a class="" href="/notification">Notification</a>
+                            </li>
                          @else
+
                          <li>
                             <a class="" href="/new-user-login">Login/</a>
                             <a class="" href="/new-user-registration">Register</a>
@@ -132,9 +145,10 @@
                         </li> 
                          @endif
 
-                        </ul>
+                        
                        
                     </div>
+                    </ul>
                     <div class="header__account header__account2">
                         <ul class="d-flex">
                         <li class="offcanvas__stikcy--toolbar__list">
@@ -144,7 +158,7 @@
                                 <path  d="M79.963,138.379l-13.358,0-.56-1.927a.871.871,0,0,0-.6-.592l-1.961-.529a.91.91,0,0,0-.226-.03.864.864,0,0,0-.226,1.7l1.491.4,3.026,10.919a1.277,1.277,0,1,0,1.844,1.144.358.358,0,0,0,0-.049h6.163c0,.017,0,.034,0,.049a1.277,1.277,0,1,0,1.434-1.267c-1.531-.247-7.783-.55-7.783-.55l-.205-.8h7.8a.9.9,0,0,0,.863-.651l1.688-5.943h.62a.936.936,0,1,0,0-1.872Zm-9.934,6.474H68.568c-.04,0-.1.008-.125-.085-.034-.118-.082-.283-.082-.283l-1.146-4.037a.061.061,0,0,1,.011-.057.064.064,0,0,1,.053-.025h1.777a.064.064,0,0,1,.063.051l.969,4.34,0,.013a.058.058,0,0,1,0,.019A.063.063,0,0,1,70.03,144.853Zm3.731-4.41-.789,4.359a.066.066,0,0,1-.063.051h-1.1a.064.064,0,0,1-.063-.051l-.789-4.357a.064.064,0,0,1,.013-.055.07.07,0,0,1,.051-.025H73.7a.06.06,0,0,1,.051.025A.064.064,0,0,1,73.76,140.443Zm3.737,0L76.26,144.8a.068.068,0,0,1-.063.049H74.684a.063.063,0,0,1-.051-.025.064.064,0,0,1-.013-.055l.973-4.357a.066.066,0,0,1,.063-.051h1.777a.071.071,0,0,1,.053.025A.076.076,0,0,1,77.5,140.448Z" transform="translate(-62.393 -135.3)" fill="currentColor"/>
                                 </svg> 
                             </span>
-                            <span class="offcanvas__stikcy--toolbar__label" >Cart</span>
+                            
                             {{-- <span class="items__count">3</span>  --}}
                         </a>
                         </li>
@@ -829,6 +843,16 @@
   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Customscript js -->
   <script src="{{asset('frontend')}}/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
   
 </body>
 

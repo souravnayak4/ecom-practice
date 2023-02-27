@@ -1,5 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\ProductNotification;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Category;
@@ -8,9 +12,11 @@ use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
 use Excel;
-use DB;
+use PDF;
+
 use Redirect;
 use Toastr;
+use App\Models\Customer;
   
 
 class ProductController extends Controller
@@ -46,7 +52,7 @@ class ProductController extends Controller
             'status' => $request->status
             
         ]); 
-         Toastr::success('category add Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+        Toastr::success('category add Successfully', 'Info', ["positionClass" => "toast-top-center"]);
         $all_category=DB::table('categories')->get(); 
        return view('products.category')
        ->with('all_category',$all_category); 
@@ -124,7 +130,7 @@ class ProductController extends Controller
     public function store(Request $request)
 
     {
-
+        $customer = Customer::all();
         $request->validate([
 
             'product_name' => 'required',
@@ -150,6 +156,7 @@ class ProductController extends Controller
 
         }
         Product::create($input);
+        Notification::send($customer, new ProductNotification($request->product_name));
         return redirect()->route('products.index');
 
     }
@@ -233,6 +240,29 @@ class ProductController extends Controller
    {
     $order=Order::all();
     return view('products.order',compact('order')); 
+   }
+   public function delivered($id)
+   {
+    $order=Order::find($id);
+    $order->delivery_status="Delivered";
+    $order->payment_status="paid";
+    $order->save();
+    return redirect()->back();
+   }
+   public function Print_Pdf($id)
+   {
+    $order=Order::find($id);
+    $pdf=PDF::loadView('products.pdf',compact('order'));
+    return $pdf->download('order_details.pdf');
+   }
+
+   public function search(Request $request)
+   {
+       $order = Order::where('name', 'LIKE', '%'.$request->search.'%')
+       ->orWhere('contact', 'LIKE', '%'.$request->search.'%')
+       ->orWhere('email', 'LIKE', '%'.$request->search.'%')
+       ->get();
+       return view('products.order', compact('order'));
    }
    
 }

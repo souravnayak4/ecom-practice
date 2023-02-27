@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Cart;
@@ -18,29 +17,31 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        $customer = Customer::find(1);
+        /* dd($customer); */
         $categories = Category::all();
-        return view('frontend.pages.index', compact('categories'));
+        return view('frontend.pages.index', compact('categories','customer'));
     }  
-
+    
+    public function notification()
+    {
+        $customer = Customer::find(1);    
+        return view('frontend.pages.notifications', compact('customer'));
+    }  
     public function about()
     {
         return view('frontend.pages.about');
     }
     public function shop()
-
     {
         $products = Product::where('status','',0)->get();
         return view('frontend.pages.shop', compact('products'));
     }
     public function  product_details($id)
     {
-
-       
-
         $details = Product::with('category' )->where('id',$id)->first();
         
-        return view('frontend.pages.product-details', compact('details')); 
-       
+        return view('frontend.pages.product-details', compact('details'));      
     }
     public function searchdata(Request $request)
 
@@ -59,11 +60,6 @@ class FrontendController extends Controller
         return view('frontend.pages.cart', compact('cart'));
     }
    
-
-
- 
-
- 
     public function add_cart(Request $request,$id)
     {
         if(Auth::guard('customer')->check())
@@ -142,22 +138,12 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.wishlist');
     }
-    public function myaccount()
-    {
-        return view('frontend.pages.my-account');
-    }
+   
     public function checkout()
     {
         return view('frontend.pages.checkout');
     }
 
-   /*  public function addToCart(Request $request )
-    {
-        return view('frontend.pages.index');
-       } */
 
-    public function updatemyaccount()
-    {
-        return view('frontend.pages.update-my-account');
-    }
+    
 }

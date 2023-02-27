@@ -2,12 +2,8 @@
 @section('main_content')
 <section class="my__account--section section--padding">
     <div class="container">
-<form action="/update-my-account" method="POST " enctype="multipart/form-data"> 
-
+<form action="{{ route('update-my-account',Auth::guard('customer')->user( )->name)}}" method="post"> 
     @csrf
-
-    
-
      <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -38,22 +34,15 @@
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <a class="btn btn-warning" href="/my-account">cancel</a>
           </div>
+          &nbsp;
+&nbsp;
+&nbsp;
           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
             <button type="submit" class="btn btn-primary">update</button>
   
           </div>
-
-        
-
-      
-
-         
-
-    </div>
-
- 
-
+        </div>
 </form>
 </div>
 </section> 
