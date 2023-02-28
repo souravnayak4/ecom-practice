@@ -13,6 +13,8 @@ use Redirect;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Hash;
+use PhpParser\Node\Stmt\Else_;
+
 class FrontendController extends Controller
 {
     public function index()
@@ -65,23 +67,56 @@ class FrontendController extends Controller
         if(Auth::guard('customer')->check())
         {
             $customer=Auth::guard('customer')->user();
+            $customerid=$customer->id;
             $products=Product::find($id);
-             $cart= new cart;
-            $cart->name=$customer->name; 
-            $cart->email=$customer->email; 
-            $cart->contact=$customer->contact; 
-            $cart->address=$customer->address; 
-            $cart->customer_id=$customer->id; 
+            $product_exist_id=Cart::where('product_id','=',$id)->where('customer_id','=',$customerid)->get('id')->first();
+             if($product_exist_id!=null)
+             {
+               $cart=Cart::find($product_exist_id)->first();
+               $quantity=$cart->quantity;
+               $cart->quantity=$quantity + $request->quantity;
+               if($products->discount_price!=null)
+               {
+                $cart->price=$products->discount_price * $cart->quantity;
+               }
+               else
+               {
+                   $cart->price=$products->price * $cart->quantity;
+               }
+               $cart->save();
+               return redirect()->back();
+             }
+             else
+             {
 
-            $cart->product_name=$products->product_name;
-            $cart->price=$products->price; 
-            $cart->image=$products->image;
-            $cart->product_id=$products->id;
+                $cart= new cart;
+                $cart->name=$customer->name; 
+                $cart->email=$customer->email; 
+                $cart->contact=$customer->contact; 
+                $cart->address=$customer->address; 
+                $cart->customer_id=$customer->id; 
+    
+                $cart->product_name=$products->product_name;
+                if($products->discount_price!=null)
+                {
+                 $cart->price=$products->discount_price * $request->quantity;
+                }
+                else
+                {
+                    $cart->price=$products->price * $request->quantity;
+                }
+                $cart->price=$products->price; 
+                $cart->image=$products->image;
+                $cart->product_id=$products->id;
+    
+                $cart->quantity=$request->quantity;
+                
+                $cart->save();
+                return redirect()->back();
 
-            $cart->quantity=$request->quantity;
-            
-            $cart->save();
-            return redirect()->back();
+
+             }
+           
             
             
         }
@@ -128,7 +163,7 @@ class FrontendController extends Controller
            $cart=delete(); */
            
         }
-        Toastr::success('Product Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
+        \Brian2694\Toastr\Facades\Toastr::success('Product Updated Successfully', 'Info', ["positionClass" => "toast-top-center"]);
 
         return redirect()->back();
 
@@ -143,7 +178,30 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.checkout');
     }
+    public function show_order()
+    {
 
+       if(Auth::guard('customer')->check())
+       {
+        $customer = Auth::guard('customer')->user();
+        $customerid=$customer->id;
+        
+        $order=Order::where('customer_id','=',$customerid)->get();
+        return view('frontend.pages.order',compact('order'));     
+       }
+       else
+       {
+            return redirect('/new-user-login');
+       }
+        
+    }
 
+    public function cancel_order($id)
+    {
+        $order=Order::find($id);
+        $order->delivery_status='cancelled';
+         $order->save();
+         return redirect()->back();
+    }
     
 }

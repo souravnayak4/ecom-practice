@@ -13,7 +13,7 @@ use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
 use Excel;
 use PDF;
-
+use App\Models\User;
 use Redirect;
 use Toastr;
 use App\Models\Customer;
@@ -264,5 +264,28 @@ class ProductController extends Controller
        ->get();
        return view('products.order', compact('order'));
    }
+
+   public function dashboard()
+   {  
+   /*  $usertype=Auth::user()->usertype;
+    if($usertype==2)
+    {
+
+    } */
+    $total_product=Product::all()->count();
+    $total_order=Order::all()->count();
+    $total_customer=Customer::all()->count();
+    $order=Order::all();
+    $total_revenue=0;
+    foreach($order as $order)
+    {
+        $total_revenue=$total_revenue + $order->price;
+    }
+    $total_delivered=Order::where('delivery_status','=','Delivered')->get()->count();
+    $total_processing=Order::where('delivery_status','=','processing')->get()->count();
+      return view('products.dashboard',compact('total_product','total_order','total_customer','total_revenue','total_delivered','total_processing'));
+      
+ 
+   } 
    
 }

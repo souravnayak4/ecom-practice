@@ -86,19 +86,17 @@
                                     
                                   
                                 </li>
-                                <li class="header__menu--items">
+                               {{--  <li class="header__menu--items">
                                     <a class="header__menu--link" href="/about">About US </a>  
-                                </li>
+                                </li> --}}
                                 <li class="header__menu--items">
                                     <a class="header__menu--link" href="blog.html">Blog 
                                         
                                     </a>
                                    
                                 </li>                   
-                                <li class="header__menu--items">
-                                    <a class="header__menu--link" href="contact.html">Contact </a> 
-                                     
-                                </li>
+                                
+                                
                                 <li class="header__menu--items">
                                 <div class="predictive__search--box__inner">
                                     <form class="predictive__search--form"action="{{url('search')}}" method="get">
@@ -123,19 +121,23 @@
                                     <span class="visually-hidden">search btn</span>  
                                 </a>
                             </li>
+                            <li class="header__menu--items">
+                                    <a class="header__menu--link" href="/show_order">Order        
+                                    </a>  
+                                </li> 
                             @if (Auth::guard('customer')->check())
-                            <li>                      
-                                <a class="" href="/my-account">My-Account</a>
+                            
+                            <li class="header__menu--items">                      
+                                <a class="header__menu--link" href="/notification">Notification</a>
                             </li>
+                            
                             &nbsp;
                             &nbsp;
                             &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <li>                      
-                                <a class="" href="/notification">Notification</a>
+                            <li class="header__menu--items">                      
+                                <a class="header__menu--link" href="/my-account">Account</a>
                             </li>
+                           
                          @else
 
                          <li>
@@ -149,6 +151,9 @@
                        
                     </div>
                     </ul>
+                    &nbsp;
+                    &nbsp;
+                   &nbsp;
                     <div class="header__account header__account2">
                         <ul class="d-flex">
                         <li class="offcanvas__stikcy--toolbar__list">

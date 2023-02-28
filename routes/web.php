@@ -97,10 +97,12 @@ Route::resource('products', ProductController::class);
 Route::get('excel-products', [ProductController::class, 'exportproducts']);
 Route::get('import-excel-products', [ProductController::class, 'importsproducts']);
 Route::post('import-products', [ProductController::class, 'productsexcel'])->name('import-products');
+Route::get('/dashboard', [ProductController::class, 'dashboard']);
 //product and category section
 Route::resource('subadmins', SubadminController::class);
 Route::get('login', [SubadminController::class, 'subadminindex'])->name('login');
 Route::post('postlogin', [SubadminController::class, 'login'])->name('postlogin');
+
 //frontend start////user login system
 Route::get('/new-user-login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
@@ -121,8 +123,11 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
  Route::get('/product-details/{id}', [FrontendController::class, 'product_details']);
  Route::get('/wishlist', [FrontendController::class, 'wishlist']);
  Route::post('/add_cart/{id}', [FrontendController::class, 'add_cart']);
- Route::get('/show_cart', [FrontendController::class, 'show_cart']);
  Route::get('/remove_cart/{id}', [FrontendController::class, 'remove_cart']);
+ Route::get('/show_cart', [FrontendController::class, 'show_cart']);
+ Route::get('/show_order', [FrontendController::class, 'show_order']);
+ Route::get('/cancel_order/{id}', [FrontendController::class, 'cancel_order']);
+
  Route::get('/cash_order', [FrontendController::class, 'cash_order']);
  
  Route::get('/notification', [FrontendController::class, 'notification']);
